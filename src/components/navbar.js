@@ -2,17 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  Button,
   Collapse,
   Nav,
   Navbar,
   NavItem,
-  // NavLink,
+  NavLink,
   NavbarBrand,
-  NavbarToggler,
-  DropdownToggle,
-  DropdownMenu,
-  UncontrolledDropdown
+  NavbarToggler
 } from "reactstrap";
 import { NavLink as Link } from "react-router-dom";
 import * as authActions from "../actions/authActions";
@@ -61,7 +57,7 @@ export class navbarContainer extends React.Component {
         <Collapse isOpen={navbarIsOpen} navbar>
           {auth.isAuthenticated() ? (
             <Nav navbar>
-              {/* <NavItem>
+              <NavItem>
                 <NavLink
                   tag={Link}
                   to="/drone-plugins"
@@ -69,39 +65,35 @@ export class navbarContainer extends React.Component {
                 >
                   Drone Plugins
                 </NavLink>
-              </NavItem> */}
+              </NavItem>
+              <NavItem>
+                <NavLink>Test</NavLink>
+              </NavItem>
             </Nav>
           ) : null}
           <div className="dropdown-divider d-md-none" />
-          <Nav className="ml-auto" navbar>
-            {auth.isAuthenticated() ? (
-              <UncontrolledDropdown className="d-none d-md-block" inNavbar nav>
-                <DropdownToggle nav>
-                  <img
-                    src={authInfo.picture}
-                    alt="Auth profile user"
-                    className="navbar__profile-image"
-                    height="26"
-                  />
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <div className="px-4 py-2">
-                    <div className="navbar__email">{authInfo.email}</div>
-                    <div className="dropdown-divider" />
-                    <Button color="danger" size="sm" onClick={auth.logout}>
-                      Log Out
-                    </Button>
-                  </div>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            ) : (
+        </Collapse>
+        <Collapse isOpen={navbarIsOpen} navbar>
+          {auth.isAuthenticated() ? (
+            <Nav navbar className="ml-auto">
               <NavItem>
-                <Button color="primary" onClick={auth.login}>
-                  Log In
-                </Button>
+                <NavLink onClick={auth.logout} className="clickable">
+                  Log Out
+                </NavLink>
               </NavItem>
-            )}
-          </Nav>
+              <NavItem>
+                <NavLink className="active">{authInfo.email}</NavLink>
+              </NavItem>
+            </Nav>
+          ) : (
+            <Nav navbar className="ml-auto">
+              <NavItem>
+                <NavLink onClick={auth.login} className="clickable">
+                  Log In
+                </NavLink>
+              </NavItem>
+            </Nav>
+          )}
         </Collapse>
       </Navbar>
     );
