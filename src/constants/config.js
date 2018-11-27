@@ -8,5 +8,5 @@ export default {
   oAuthDomain: process.env.REACT_APP_O_AUTH_DOMAIN || 'hellopresent.auth0.com',
   helloPresentApiEndpoint:
     process.env.REACT_APP_HELLO_PRESENT_API_ENDPOINT ||
-    'http://bbay.duckdns.org:60001'
+    'http://hellopresent.duckdns.org:60001'
 };
