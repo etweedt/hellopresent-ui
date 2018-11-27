@@ -7,7 +7,10 @@ const userContent = ({userInfo, userInfoChanged, saveUserInfo}) => {
     <section>
       <div className="row mb-4">
         <div className="col-sm">
-          <h3>Update your profile information</h3>
+          <h1>
+            <i className="fa fa-user" /> Your profile
+          </h1>
+          <p>Add some details about yourself so other people can shop for you.</p>
         </div>
       </div>
       <div className="row">
