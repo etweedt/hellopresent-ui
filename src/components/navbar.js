@@ -86,7 +86,6 @@ export class navbarContainer extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <div className="px-4 py-2">
-                    <div className="navbar__name">{authInfo.name}</div>
                     <div className="navbar__email">{authInfo.email}</div>
                     <div className="dropdown-divider" />
                     <Button color="danger" size="sm" onClick={auth.logout}>

@@ -7,7 +7,7 @@ export default class Auth {
     clientID: config.oAuthClientId,
     redirectUri: window.location.origin + '/callback',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   login = () => {

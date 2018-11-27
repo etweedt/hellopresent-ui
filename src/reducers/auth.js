@@ -9,9 +9,9 @@ export default function(state = initialState.auth, action) {
     case types.AUTH_RETRIEVE_PROFILE_COMPLETED:
       profile = action.payload.profile;
       return {
-        name: profile['https://chrobinson.com/display_name'],
-        email: profile['https://chrobinson.com/email'],
-        picture: profile['https://github.chrobinson.com/github_photo']
+        name: profile.nickname,
+        email: profile.name,
+        picture: profile.picture
       };
 
     case types.AUTH_RETRIEVE_PROFILE_ERROR:
