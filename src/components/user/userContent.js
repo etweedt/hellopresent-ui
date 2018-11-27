@@ -14,7 +14,7 @@ const userContent = ({userInfo, userInfoChanged, saveUserInfo}) => {
         <div className="col-lg-6 col-md-8 col-sm">
           <Form
             onKeyPress={event => {
-              if (event.which === 13 && event.target.name !== 'doc') {
+              if (event.which === 13 && event.target.name !== 'address') {
                 event.preventDefault();
               }
             }}>
