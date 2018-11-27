@@ -50,7 +50,7 @@ export class navbarContainer extends React.Component {
 
     return (
       <Navbar color="dark" dark expand="md" fixed="top">
-        <NavbarBrand tag={Link} to="/">
+        <NavbarBrand tag={Link} to="/" onClick={this.navbarClose}>
           Hello, Present!
         </NavbarBrand>
         <NavbarToggler onClick={this.navbarToggle} />
@@ -58,16 +58,9 @@ export class navbarContainer extends React.Component {
           {auth.isAuthenticated() ? (
             <Nav navbar>
               <NavItem>
-                <NavLink
-                  tag={Link}
-                  to="/drone-plugins"
-                  onClick={this.navbarClose}
-                >
-                  Drone Plugins
+                <NavLink tag={Link} to="/" onClick={this.navbarClose}>
+                  Test
                 </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink>Test</NavLink>
               </NavItem>
             </Nav>
           ) : null}
@@ -77,7 +70,13 @@ export class navbarContainer extends React.Component {
           {auth.isAuthenticated() ? (
             <Nav navbar className="ml-auto">
               <NavItem>
-                <NavLink onClick={auth.logout} className="clickable">
+                <NavLink
+                  onClick={() => {
+                    auth.logout();
+                    this.navbarClose();
+                  }}
+                  className="clickable"
+                >
                   Log Out
                 </NavLink>
               </NavItem>
@@ -88,7 +87,13 @@ export class navbarContainer extends React.Component {
           ) : (
             <Nav navbar className="ml-auto">
               <NavItem>
-                <NavLink onClick={auth.login} className="clickable">
+                <NavLink
+                  onClick={() => {
+                    auth.login();
+                    this.navbarClose();
+                  }}
+                  className="clickable"
+                >
                   Log In
                 </NavLink>
               </NavItem>
