@@ -1,26 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navbar from './components/navbar';
+import Home from "./components/home/homeContent";
+import toastr from "toastr";
+import Auth from "./auth/auth";
+import Callback from "./components/loginCallback/callback";
+import "toastr/toastr.scss";
+import "bootstrap/scss/bootstrap.scss";
+import "font-awesome/scss/font-awesome.scss";
+
+toastr.options.positionClass = "toast-bottom-right";
+
+const auth = new Auth();
+const handleAuthentication = ({ location }) => {
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
+  }
+};
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="container">
+          <header>
+            <Navbar auth={auth} />
+          </header>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route
+              path="/callback"
+              render={props => {
+                handleAuthentication(props);
+                return <Callback {...props} />;
+              }}
+            />
+          </div>
+        </div>
+      </Router>
     );
   }
 }
