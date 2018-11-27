@@ -42,3 +42,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Deployment
+
+Clone this repo from GitHub on a docker-ready server. From the project directory, run the following commands to start a containerized instance of the app:
+
+```
+sudo docker build -t hellopresent-ui .
+sudo docker run -p 50001:5000 --name hellopresent-ui --restart always -d hellopresent-ui
+```
