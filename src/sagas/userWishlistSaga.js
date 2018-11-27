@@ -1,11 +1,12 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
-import Api from '../apis/wishlistApi';
+import MockApi from '../apis/wishlistApi';
+import Api from '../apis/helloPresentApi';
 import * as types from '../constants/actionTypes';
 import * as actions from '../actions/userWishlistActions';
 
 export function* getUserWishlist(action) {
   try {
-    const wishlist = yield call(Api.getUserWishlist, action.payload.email);
+    const wishlist = yield call(Api.getUsersWishlist, action.payload.email);
     yield put(actions.getUserWishlistComplete(wishlist.items));
   } catch (e) {
     yield put(actions.getUserWishlistError(e));
@@ -15,7 +16,7 @@ export function* getUserWishlist(action) {
 export function* addItemToUserWishlist(action) {
   try {
     const items = yield call(
-      Api.addItemToUserWishlist,
+      MockApi.addItemToUserWishlist,
       action.payload.email,
       action.payload.item
     );
@@ -28,7 +29,7 @@ export function* addItemToUserWishlist(action) {
 export function* removeItemFromUserWishlist(action) {
   try {
     const items = yield call(
-      Api.deleteUserWishlistItem,
+      MockApi.deleteUserWishlistItem,
       action.payload.email,
       action.payload.itemName
     );
@@ -41,7 +42,7 @@ export function* removeItemFromUserWishlist(action) {
 export function* editUserWishlistItem(action) {
   try {
     const items = yield call(
-      Api.editUserWishlistItem,
+      MockApi.editUserWishlistItem,
       action.payload.email,
       action.payload.item
     );

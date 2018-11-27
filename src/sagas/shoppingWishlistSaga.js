@@ -1,12 +1,13 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
-import Api from '../apis/wishlistApi';
+import MockApi from '../apis/wishlistApi';
+import Api from '../apis/helloPresentApi';
 import * as types from '../constants/actionTypes';
 import * as actions from '../actions/shoppingWishlistActions';
 
 export function* getShoppingWishlists(action) {
   try {
-    const wishlists = yield call(Api.getNonUserWishlists, action.payload.email);
-    yield put(actions.getAltWishlistsComplete(wishlists));
+    const wishlists = yield call(Api.getViewableWishlistsForUser, action.payload.email);
+    yield put(actions.getAltWishlistsComplete(wishlists.wishlists));
   } catch (e) {
     yield put(actions.getAltWishlistsError(e));
   }
@@ -15,7 +16,7 @@ export function* getShoppingWishlists(action) {
 export function* claimItem(action) {
   try {
     const item = yield call(
-      Api.claimItem,
+      MockApi.claimItem,
       action.payload.email,
       action.payload.item,
       action.payload.itemOwner
@@ -31,7 +32,7 @@ export function* claimItem(action) {
 export function* unclaimItem(action) {
   try {
     const item = yield call(
-      Api.unclaimItem,
+      MockApi.unclaimItem,
       action.payload.email,
       action.payload.item,
       action.payload.itemOwner

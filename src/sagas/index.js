@@ -3,6 +3,7 @@ import * as auth from './authSaga';
 import * as userWishlist from './userWishlistSaga';
 import * as shoppingWishlists from './shoppingWishlistSaga';
 import * as claims from './claimSaga';
+import * as userInfo from './userInfoSaga';
 
 export default function* root() {
   yield all([
@@ -14,6 +15,8 @@ export default function* root() {
     shoppingWishlists.watchGetShoppingWishlists(),
     shoppingWishlists.watchClaimItem(),
     shoppingWishlists.watchUnclaimItem(),
-    claims.watchGetClaims()
+    claims.watchGetClaims(),
+    userInfo.watchRetrieveUserInfo(),
+    userInfo.watchUpdateUserInfo()
   ]);
 }

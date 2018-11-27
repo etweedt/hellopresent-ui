@@ -62,7 +62,7 @@ export class navbarContainer extends React.Component {
                   My List
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink tag={Link} to="/shop" onClick={this.navbarClose}>
                   Shop
                 </NavLink>
@@ -70,6 +70,11 @@ export class navbarContainer extends React.Component {
               <NavItem>
                 <NavLink tag={Link} to="/claims" onClick={this.navbarClose}>
                   Claims
+                </NavLink>
+              </NavItem> */}
+              <NavItem>
+                <NavLink tag={Link} to="/profile" onClick={this.navbarClose}>
+                  Profile
                 </NavLink>
               </NavItem>
             </Nav>
@@ -80,6 +85,9 @@ export class navbarContainer extends React.Component {
           {auth.isAuthenticated() ? (
             <Nav navbar className="ml-auto">
               <NavItem>
+                <NavLink className="active">{authInfo.email}</NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink
                   onClick={() => {
                     auth.logout();
@@ -88,9 +96,6 @@ export class navbarContainer extends React.Component {
                   className="clickable">
                   Log Out
                 </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="active">{authInfo.email}</NavLink>
               </NavItem>
             </Nav>
           ) : (
