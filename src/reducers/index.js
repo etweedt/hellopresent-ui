@@ -1,6 +1,12 @@
 import {combineReducers} from 'redux';
-import auth from './auth';
+import auth from './authReducer';
+import userWishlist from './userWishlistReducer';
+import shoppingWishlists from './shoppingWishlistReducer';
+import claims from './claimsReducer';
 
 export default combineReducers({
-  auth
+  auth,
+  userWishlist,
+  shoppingWishlists,
+  claims
 });

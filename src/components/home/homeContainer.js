@@ -1,27 +1,24 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import Content from './homeContent';
 
 export class homeContainer extends React.Component {
   static propTypes = {
-    // prop: PropTypes.any.isRequired
-  }
+    auth: PropTypes.object.isRequired
+  };
 
   render() {
-    return (
-      <section>
-        <div className="row">
-          <div className="col-sm">
-            <span>homeContainer</span>
-          </div>
-        </div>
-      </section>
-    );
+    const {auth} = this.props;
+
+    return <Content auth={auth} />;
   }
 }
 
-export const mapStateToProps = () => {
-  return {};
+export const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
 };
 
 export const mapDispatchToProps = () => {

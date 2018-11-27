@@ -1,9 +1,9 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-import sagas from "./sagas";
-import rootReducer from "./reducers";
-import authMiddleware from "./middleware/auth0Middleware";
-import * as types from "./constants/actionTypes";
+import {createStore, compose, applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import sagas from './sagas';
+import rootReducer from './reducers';
+import authMiddleware from './middleware/auth0Middleware';
+import * as types from './constants/actionTypes';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,7 +18,7 @@ export default () => {
   const middlewares = [sagaMiddleware, authMiddleware(actionsWhitelist)];
   let store;
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === 'production') {
     store = createStore(rootReducer, applyMiddleware(...middlewares));
   } else {
     const composeEnhancers =

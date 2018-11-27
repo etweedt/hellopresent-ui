@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {
   Collapse,
   Nav,
@@ -9,9 +9,9 @@ import {
   NavLink,
   NavbarBrand,
   NavbarToggler
-} from "reactstrap";
-import { NavLink as Link } from "react-router-dom";
-import * as authActions from "../actions/authActions";
+} from 'reactstrap';
+import {NavLink as Link} from 'react-router-dom';
+import * as authActions from '../actions/authActions';
 
 export class navbarContainer extends React.Component {
   static propTypes = {
@@ -25,7 +25,7 @@ export class navbarContainer extends React.Component {
   };
 
   componentWillMount() {
-    const { auth, getUserInfo } = this.props;
+    const {auth, getUserInfo} = this.props;
 
     if (auth.isAuthenticated()) {
       getUserInfo();
@@ -45,8 +45,8 @@ export class navbarContainer extends React.Component {
   };
 
   render() {
-    const { auth, authInfo } = this.props;
-    const { navbarIsOpen } = this.state;
+    const {auth, authInfo} = this.props;
+    const {navbarIsOpen} = this.state;
 
     return (
       <Navbar color="dark" dark expand="md" fixed="top">
@@ -58,8 +58,18 @@ export class navbarContainer extends React.Component {
           {auth.isAuthenticated() ? (
             <Nav navbar>
               <NavItem>
-                <NavLink tag={Link} to="/" onClick={this.navbarClose}>
-                  Test
+                <NavLink tag={Link} to="/mylist" onClick={this.navbarClose}>
+                  My List
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/shop" onClick={this.navbarClose}>
+                  Shop
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/claims" onClick={this.navbarClose}>
+                  Claims
                 </NavLink>
               </NavItem>
             </Nav>
@@ -75,8 +85,7 @@ export class navbarContainer extends React.Component {
                     auth.logout();
                     this.navbarClose();
                   }}
-                  className="clickable"
-                >
+                  className="clickable">
                   Log Out
                 </NavLink>
               </NavItem>
@@ -92,8 +101,7 @@ export class navbarContainer extends React.Component {
                     auth.login();
                     this.navbarClose();
                   }}
-                  className="clickable"
-                >
+                  className="clickable">
                   Log In
                 </NavLink>
               </NavItem>
