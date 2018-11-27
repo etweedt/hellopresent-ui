@@ -6,7 +6,7 @@ const users = [
     email: 'erock@gmail.com',
     password: 'test',
     firstName: 'Eric',
-    lastName: 'Tweedt',
+    lastName: 'Winning',
     address: '5137 Woodridge Rd.\nMinnetonka, MN 55345'
   },
   {
