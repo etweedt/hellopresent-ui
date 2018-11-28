@@ -3,5 +3,6 @@ export default {
   userWishlist: [],
   shoppingWishlists: [],
   claims: [],
-  userInfo: {}
+  userInfo: {},
+  groupMembers: []
 };

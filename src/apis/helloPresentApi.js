@@ -70,6 +70,19 @@ class HelloPresentApi {
         });
     });
   }
+
+  static getUserGroupMembers(email) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${config.helloPresentApiEndpoint}/users/group/${email}`)
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
 }
 
 export default HelloPresentApi;

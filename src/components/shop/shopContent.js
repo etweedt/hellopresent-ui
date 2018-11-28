@@ -1,42 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
-import ItemCard from '../common/itemCard';
+// import ItemCard from '../common/itemCard';
 
-const shopContent = ({
-  wishlists,
-  selected,
-  selectedChanged,
-  userName,
-  onClaimChanged
-}) => {
-  const findList = () => {
-    const found = wishlists.find(list => {
-      return list.firstName + ' ' + list.lastName === selected;
-    });
-    if (found) {
-      return found;
+const shopContent = ({selected, selectedChanged, groupMembers}) => {
+  const getName = member => {
+    let retVal = member.firstName;
+    if (member.lastName) {
+      retVal += ` ${member.lastName}`;
     }
+    return retVal;
   };
-  const foundList = findList();
 
   return (
     <section>
-      <div className="row">
-        <div className="col-sm-1" />
-        <div className="col-sm-10">
+      <div className="row mb-3">
+        <div className="col-sm">
           <h1>
             <i className="fa fa-gift" /> Find gifts for others
           </h1>
         </div>
       </div>
       <div className="row">
-        <br />
-        <br />
-      </div>
-      <div className="row">
-        <div className="col-md-1" />
-        <div className="col-md-2">
+        <div className="col-lg-4 col-md-6 col-sm-8">
           <Form>
             <FormGroup>
               <Label>Who are you shopping for?</Label>
@@ -45,21 +31,25 @@ const shopContent = ({
                 name="select"
                 onChange={selectedChanged}
                 value={selected}>
-                {wishlists.map((list, index) => {
-                  return (
-                    <option key={index}>
-                      {list.firstName} {list.lastName}
-                    </option>
-                  );
+                <option value="" disabled />
+                {groupMembers.map(member => {
+                  if (member.firstName) {
+                    return (
+                      <option key={member.id} value={member.id}>
+                        {getName(member)}
+                      </option>
+                    );
+                  } else {
+                    return null;
+                  }
                 })}
               </Input>
             </FormGroup>
           </Form>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-1" />
-        <div className="col-md-10">
+      {/* <div className="row">
+        <div className="col-sm">
           {foundList && (
             <div className="row">
               {foundList.items.map((item, index) => {
@@ -77,17 +67,15 @@ const shopContent = ({
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
 
 shopContent.propTypes = {
-  wishlists: PropTypes.array.isRequired,
   selected: PropTypes.string,
   selectedChanged: PropTypes.func.isRequired,
-  userName: PropTypes.string.isRequired,
-  onClaimChanged: PropTypes.func.isRequired
+  groupMembers: PropTypes.array.isRequired
 };
 
 export default shopContent;

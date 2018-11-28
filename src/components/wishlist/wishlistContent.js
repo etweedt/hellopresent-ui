@@ -5,16 +5,12 @@ import ItemCard from './itemCard';
 const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
   return (
     <section>
-      <div className="row mb">
+      <div className="row mb-3">
         <div className="col-sm">
           <h1>
             <i className="fa fa-list-alt" /> Manage your items
           </h1>
         </div>
-      </div>
-      <div className="row">
-        <br />
-        <br />
       </div>
       <div className="row">
         <div className="col-md">

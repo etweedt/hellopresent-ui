@@ -4,11 +4,13 @@ import userWishlist from './userWishlistReducer';
 import shoppingWishlists from './shoppingWishlistReducer';
 import claims from './claimsReducer';
 import userInfo from './userInfoReducer';
+import groupMembers from './groupMembersReducer';
 
 export default combineReducers({
   auth,
   userWishlist,
   shoppingWishlists,
   claims,
-  userInfo
+  userInfo,
+  groupMembers
 });
