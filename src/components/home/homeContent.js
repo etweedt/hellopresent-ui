@@ -19,15 +19,26 @@ const homeContent = ({auth}) => {
             <div className="jumbotron text-center">
               <p>Welcome {auth.name}! What would you like to do?</p>
               <Link to="/mylist">
-                <Button color="primary" type="button">
+                <Button color="primary">
                   Manage My Wishlist
                 </Button>
               </Link>
               <br />
               <br />
               <Link to="/shop">
-                <Button color="primary" type="button">
+                <Button color="primary">
                   Browse Other Wishlists
+                </Button>
+              </Link>
+              <br />
+              <br />
+              <p>
+                If you don't have your profile set up with at least your first
+                name, other people won't be able to see you wishlist.
+              </p>
+              <Link to="/profile">
+                <Button color="primary">
+                  Edit profile
                 </Button>
               </Link>
             </div>
