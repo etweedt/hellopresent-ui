@@ -33,21 +33,22 @@ export function clearUserWishlist() {
   };
 }
 
-export function addItemToUserWishlist(email, item) {
+export function addItemToUserWishlist(email, wishlist, item) {
   return {
     type: types.ADD_USER_WISHLIST_ITEM_STARTED,
     payload: {
       email,
+      wishlist,
       item
     }
   };
 }
 
-export function addItemToUserWishlistComplete(item) {
+export function addItemToUserWishlistComplete(wishlist) {
   return {
     type: types.ADD_USER_WISHLIST_ITEM_COMPLETE,
     payload: {
-      item
+      wishlist
     }
   };
 }
@@ -61,21 +62,22 @@ export function addItemToUserWishlistError(error) {
   };
 }
 
-export function deleteItemFromUserWishlist(email, itemName) {
+export function deleteItemFromUserWishlist(email, wishlist, itemId) {
   return {
     type: types.DELETE_USER_WISHLIST_ITEM_STARTED,
     payload: {
       email,
-      itemName
+      wishlist,
+      itemId
     }
   };
 }
 
-export function deleteItemFromUserWishlistComplete(item) {
+export function deleteItemFromUserWishlistComplete(wishlist) {
   return {
     type: types.DELETE_USER_WISHLIST_ITEM_COMPLETE,
     payload: {
-      item
+      wishlist
     }
   };
 }
@@ -89,21 +91,22 @@ export function deleteItemFromUserWishlistError(error) {
   };
 }
 
-export function updateUserWishlistItem(email, item) {
+export function updateUserWishlistItem(email, wishlist, item) {
   return {
     type: types.EDIT_USER_WISHLIST_ITEM_STARTED,
     payload: {
       email,
+      wishlist,
       item
     }
   };
 }
 
-export function updateUserWishlistItemComplete(item) {
+export function updateUserWishlistItemComplete(wishlist) {
   return {
     type: types.EDIT_USER_WISHLIST_ITEM_COMPLETE,
     payload: {
-      item
+      wishlist
     }
   };
 }

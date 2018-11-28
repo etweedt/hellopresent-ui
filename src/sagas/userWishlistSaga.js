@@ -1,5 +1,4 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
-import MockApi from '../apis/wishlistApi';
 import Api from '../apis/helloPresentApi';
 import * as types from '../constants/actionTypes';
 import * as actions from '../actions/userWishlistActions';
@@ -15,12 +14,19 @@ export function* getUserWishlist(action) {
 
 export function* addItemToUserWishlist(action) {
   try {
-    const items = yield call(
-      MockApi.addItemToUserWishlist,
+    const wishlist = {
+      email: action.payload.email,
+      items: action.payload.wishlist
+    };
+
+    wishlist.items.push(action.payload.item);
+
+    const updatedWishlist = yield call(
+      Api.updateUsersWishlist,
       action.payload.email,
-      action.payload.item
+      wishlist
     );
-    yield put(actions.addItemToUserWishlistComplete(items));
+    yield put(actions.addItemToUserWishlistComplete(updatedWishlist.items));
   } catch (e) {
     yield put(actions.addItemToUserWishlistError(e));
   }
@@ -28,12 +34,23 @@ export function* addItemToUserWishlist(action) {
 
 export function* removeItemFromUserWishlist(action) {
   try {
-    const items = yield call(
-      MockApi.deleteUserWishlistItem,
-      action.payload.email,
-      action.payload.itemName
+    const wishlist = {
+      email: action.payload.email,
+      items: action.payload.wishlist
+    };
+    const found = wishlist.items.find(item => {
+      return item._id === action.payload.itemId;
+    });
+    wishlist.items.splice(wishlist.items.indexOf(found), 1);
+
+    const updatedWishlist = yield call(
+      Api.updateUsersWishlist,
+      wishlist.email,
+      wishlist
     );
-    yield put(actions.deleteItemFromUserWishlistComplete(items));
+    yield put(
+      actions.deleteItemFromUserWishlistComplete(updatedWishlist.items)
+    );
   } catch (e) {
     yield put(actions.deleteItemFromUserWishlistError(e));
   }
@@ -41,12 +58,29 @@ export function* removeItemFromUserWishlist(action) {
 
 export function* editUserWishlistItem(action) {
   try {
-    const items = yield call(
-      MockApi.editUserWishlistItem,
-      action.payload.email,
-      action.payload.item
+    const {item} = action.payload;
+    const wishlist = {
+      email: action.payload.email,
+      items: action.payload.wishlist
+    };
+    const found = wishlist.items.find(i => {
+      return i._id === item._id;
+    });
+
+    found.name = item.name;
+    found.description = item.description;
+    found.url = item.url;
+    found.notes = item.notes;
+    found.priceTier = item.priceTier;
+    found.claimedBy = item.claimedBy;
+
+    const updatedWishlist = yield call(
+      Api.updateUsersWishlist,
+      wishlist.email,
+      wishlist
     );
-    yield put(actions.updateUserWishlistItemComplete(items));
+
+    yield put(actions.updateUserWishlistItemComplete(updatedWishlist.items));
   } catch (e) {
     yield put(actions.updateUserWishlistItemError(e));
   }

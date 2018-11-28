@@ -90,7 +90,7 @@ export class userWishlistContainer extends React.Component {
   };
 
   onSave = () => {
-    const {addItem, editItem, auth} = this.props;
+    const {addItem, wishlist, editItem, auth} = this.props;
 
     let url = this.state.toEdit.url;
     if (!url.startsWith('http')) {
@@ -100,9 +100,9 @@ export class userWishlistContainer extends React.Component {
     toSave.url = url;
 
     if (this.state.addMode) {
-      addItem(auth.email, toSave);
+      addItem(auth.email, wishlist, toSave);
     } else {
-      editItem(auth.email, toSave);
+      editItem(auth.email, wishlist, toSave);
     }
 
     this.setState({
@@ -144,10 +144,10 @@ export class userWishlistContainer extends React.Component {
   }
 
   onDelete = () => {
-    const {auth, removeItem} = this.props;
+    const {auth, wishlist, removeItem} = this.props;
     const {toDelete} = this.state;
 
-    removeItem(auth.email, toDelete.name);
+    removeItem(auth.email, wishlist, toDelete._id);
 
     this.setState({
       showDeleteModal: false,
@@ -198,14 +198,14 @@ export const mapDispatchToProps = dispatch => {
     getWishlist: email => {
       dispatch(getUserWishlist(email));
     },
-    addItem: (email, item) => {
-      dispatch(addItemToUserWishlist(email, item));
+    addItem: (email, wishlist, item) => {
+      dispatch(addItemToUserWishlist(email, wishlist, item));
     },
-    removeItem: (email, itemName) => {
-      dispatch(deleteItemFromUserWishlist(email, itemName));
+    removeItem: (email, wishlist, itemId) => {
+      dispatch(deleteItemFromUserWishlist(email, wishlist, itemId));
     },
-    editItem: (email, item) => {
-      dispatch(updateUserWishlistItem(email, item));
+    editItem: (email, wishlist, item) => {
+      dispatch(updateUserWishlistItem(email, wishlist, item));
     },
     clearWishlist: () => {
       dispatch(clearUserWishlist());

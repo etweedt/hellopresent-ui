@@ -33,7 +33,6 @@ const editWishlistItemModal = ({
                 type="text"
                 name="name"
                 valid={wishlistItem.name.length >= 2}
-                readOnly={!addMode}
                 placeholder="Item name"
                 value={wishlistItem.name}
                 onChange={onChange}

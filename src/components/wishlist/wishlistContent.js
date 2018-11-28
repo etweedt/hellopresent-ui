@@ -21,8 +21,7 @@ const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
           <button
             className="btn btn-sm btn-outline-success"
             type="button"
-            onClick={onAdd}
-            disabled>
+            onClick={onAdd}>
             Add Item
           </button>
           <br />

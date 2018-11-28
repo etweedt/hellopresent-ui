@@ -22,7 +22,6 @@ class HelloPresentApi {
           user: userInfo
         })
         .then(response => {
-          console.log(response);
           resolve(response.data);
         })
         .catch(err => {
@@ -36,7 +35,6 @@ class HelloPresentApi {
       axios
         .get(`${config.helloPresentApiEndpoint}/wishlists/${email}`)
         .then(response => {
-          console.log(response.data);
           resolve(response.data);
         })
         .catch(err => {
@@ -50,7 +48,22 @@ class HelloPresentApi {
       axios
         .get(`${config.helloPresentApiEndpoint}/wishlists/user/${email}`)
         .then(response => {
-          resolve(response.data);
+          resolve(response.data.wishlist);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
+  static updateUsersWishlist(email, wishlist) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${config.helloPresentApiEndpoint}/wishlists/user/${email}`, {
+          wishlist
+        })
+        .then(response => {
+          resolve(response.data.wishlist);
         })
         .catch(err => {
           reject(err);
