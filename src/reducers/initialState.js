@@ -1,7 +1,8 @@
 export default {
+  loading: 0,
   auth: {},
   userWishlist: [],
-  shoppingWishlists: [],
+  shoppingWishlist: {},
   claims: [],
   userInfo: {},
   groupMembers: []

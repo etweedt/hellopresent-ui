@@ -1,15 +1,17 @@
 import {combineReducers} from 'redux';
+import loading from './loadingReducer';
 import auth from './authReducer';
 import userWishlist from './userWishlistReducer';
-import shoppingWishlists from './shoppingWishlistReducer';
+import shoppingWishlist from './shoppingWishlistReducer';
 import claims from './claimsReducer';
 import userInfo from './userInfoReducer';
 import groupMembers from './groupMembersReducer';
 
 export default combineReducers({
+  loading,
   auth,
   userWishlist,
-  shoppingWishlists,
+  shoppingWishlist,
   claims,
   userInfo,
   groupMembers

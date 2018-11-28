@@ -10,6 +10,7 @@ import toastr from 'toastr';
 import Auth from './auth/auth';
 import Callback from './components/loginCallback/callback';
 import NotFound from './components/notFoundPage';
+import Loader from './components/common/loader';
 import 'toastr/toastr.scss';
 import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
@@ -30,6 +31,7 @@ class App extends Component {
         <div className="container">
           <header>
             <Navbar auth={auth} />
+            <Loader />
           </header>
           <Switch>
             <Route exact path="/" component={Home} />

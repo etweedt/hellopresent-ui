@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
-// import ItemCard from '../common/itemCard';
+import ItemCard from '../common/itemCard';
 
-const shopContent = ({selected, selectedChanged, groupMembers}) => {
+const shopContent = ({auth, selected, selectedChanged, groupMembers, wishlist}) => {
   const getName = member => {
     let retVal = member.firstName;
     if (member.lastName) {
@@ -48,34 +48,36 @@ const shopContent = ({selected, selectedChanged, groupMembers}) => {
           </Form>
         </div>
       </div>
-      {/* <div className="row">
-        <div className="col-sm">
-          {foundList && (
+      {wishlist.email && (
+        <div className="row">
+          <div className="col-sm">
             <div className="row">
-              {foundList.items.map((item, index) => {
+              {wishlist.items.map(item => {
                 return (
-                  <div key={index} className="col-lg-4 col-md-6">
+                  <div key={item._id} className="col-lg-4 col-md-6">
                     <ItemCard
-                      listOwner={foundList.email}
+                      listOwner={wishlist.email}
                       item={item}
-                      userName={userName}
-                      onClaimChanged={onClaimChanged}
+                      userName={auth.email}
+                      onClaimChanged={() => {}}
                     />
                   </div>
                 );
               })}
             </div>
-          )}
+          </div>
         </div>
-      </div> */}
+      )}
     </section>
   );
 };
 
 shopContent.propTypes = {
+  auth: PropTypes.object.isRequired,
   selected: PropTypes.string,
   selectedChanged: PropTypes.func.isRequired,
-  groupMembers: PropTypes.array.isRequired
+  groupMembers: PropTypes.array.isRequired,
+  wishlist: PropTypes.object.isRequired
 };
 
 export default shopContent;

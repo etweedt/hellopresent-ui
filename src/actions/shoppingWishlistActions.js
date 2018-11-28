@@ -1,35 +1,35 @@
 import * as types from '../constants/actionTypes';
 
-export function getAltWishlists(email) {
+export function getShoppingWishlist(email) {
   return {
-    type: types.GET_ALT_WISHLISTS_STARTED,
+    type: types.GET_SHOPPING_WISHLIST_STARTED,
     payload: {
       email
     }
   };
 }
 
-export function getAltWishlistsComplete(wishlists) {
+export function getShoppingWishlistCompleted(wishlist) {
   return {
-    type: types.GET_ALT_WISHLISTS_COMPLETE,
+    type: types.GET_SHOPPING_WISHLIST_COMPLETED,
     payload: {
-      wishlists
+      wishlist
     }
   };
 }
 
-export function getAltWishlistsError(error) {
+export function getShoppingWishlistError(error) {
   return {
-    type: types.GET_ALT_WISHLISTS_ERROR,
+    type: types.GET_SHOPPING_WISHLIST_ERROR,
     payload: {
       error
     }
   };
 }
 
-export function clearAltWishlists() {
+export function clearShoppingWishlist() {
   return {
-    type: types.CLEAR_ALT_WISHLISTS
+    type: types.CLEAR_SHOPPING_WISHLIST
   };
 }
 

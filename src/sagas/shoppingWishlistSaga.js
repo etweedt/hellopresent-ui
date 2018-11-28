@@ -4,12 +4,12 @@ import Api from '../apis/helloPresentApi';
 import * as types from '../constants/actionTypes';
 import * as actions from '../actions/shoppingWishlistActions';
 
-export function* getShoppingWishlists(action) {
+export function* getShoppingWishlist(action) {
   try {
-    const wishlists = yield call(Api.getViewableWishlistsForUser, action.payload.email);
-    yield put(actions.getAltWishlistsComplete(wishlists.wishlists));
+    const wishlist = yield call(Api.getUsersWishlist, action.payload.email);
+    yield put(actions.getShoppingWishlistCompleted(wishlist));
   } catch (e) {
-    yield put(actions.getAltWishlistsError(e));
+    yield put(actions.getShoppingWishlistError(e));
   }
 }
 
@@ -45,14 +45,14 @@ export function* unclaimItem(action) {
   }
 }
 
-export function* watchGetShoppingWishlists() {
-  yield takeEvery(types.GET_ALT_WISHLISTS_STARTED, getShoppingWishlists);
+export function* watchGetShoppingWishlist() {
+  yield takeEvery(types.GET_SHOPPING_WISHLIST_STARTED, getShoppingWishlist);
 }
 
-export function* watchClaimItem() {
-  yield takeEvery(types.CLAIM_ITEM_STARTED, claimItem);
-}
+// export function* watchClaimItem() {
+//   yield takeEvery(types.CLAIM_ITEM_STARTED, claimItem);
+// }
 
-export function* watchUnclaimItem() {
-  yield takeEvery(types.UNCLAIM_ITEM_STARTED, unclaimItem);
-}
+// export function* watchUnclaimItem() {
+//   yield takeEvery(types.UNCLAIM_ITEM_STARTED, unclaimItem);
+// }

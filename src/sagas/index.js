@@ -1,7 +1,7 @@
 import {all} from 'redux-saga/effects';
 import * as auth from './authSaga';
 import * as userWishlist from './userWishlistSaga';
-import * as shoppingWishlists from './shoppingWishlistSaga';
+import * as shoppingWishlist from './shoppingWishlistSaga';
 import * as claims from './claimSaga';
 import * as userInfo from './userInfoSaga';
 import * as groupMembers from './groupMembersSaga';
@@ -13,9 +13,9 @@ export default function* root() {
     userWishlist.watchAddUserWishlistItem(),
     userWishlist.watchEditUserWishlistItem(),
     userWishlist.watchDeleteUserWishlistItem(),
-    shoppingWishlists.watchGetShoppingWishlists(),
-    shoppingWishlists.watchClaimItem(),
-    shoppingWishlists.watchUnclaimItem(),
+    shoppingWishlist.watchGetShoppingWishlist(),
+    // shoppingWishlist.watchClaimItem(),
+    // shoppingWishlist.watchUnclaimItem(),
     claims.watchGetClaims(),
     userInfo.watchRetrieveUserInfo(),
     userInfo.watchUpdateUserInfo(),

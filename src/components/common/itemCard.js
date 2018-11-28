@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PriceBadge from './priceBadge';
+import {Button} from 'reactstrap';
 
 const itemCard = ({item, listOwner, userName, onClaimChanged}) => {
-  const getClaimedClass = () => {
+  const getClaimedColor = () => {
     if (item.claimedBy) {
       if (item.claimedBy === userName) {
-        return 'btn btn-warning';
+        return 'warning';
       } else {
-        return 'btn btn-danger';
+        return 'danger';
       }
     } else {
-      return 'btn btn-primary';
+      return 'primary';
     }
   };
 
@@ -36,18 +37,18 @@ const itemCard = ({item, listOwner, userName, onClaimChanged}) => {
           {item.notes && <h6 className="mb-0">Notes:</h6>}
           {item.notes && <p className="card-text">{item.notes}</p>}
           <PriceBadge value={item.priceTier} />
-          <button
-            className={getClaimedClass()}
-            type="button"
-            onClick={onClaimChanged.bind(this, item, listOwner)}
-            disabled={item.claimedBy && item.claimedBy !== userName}
+          <Button
+            color={getClaimedColor()}
+            onClick={() => onClaimChanged(item, listOwner)}
+            // disabled={item.claimedBy && item.claimedBy !== userName}
+            disabled
             title={
               item.claimedBy && item.claimedBy !== userName
                 ? 'Contact ' + item.claimedBy + ' with any complaints!'
                 : ''
             }>
             {getClaimedText()}
-          </button>
+          </Button>
           {item.url && <span>&nbsp;&nbsp;</span>}
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer">

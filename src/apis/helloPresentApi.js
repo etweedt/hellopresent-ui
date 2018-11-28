@@ -30,19 +30,6 @@ class HelloPresentApi {
     });
   }
 
-  static getViewableWishlistsForUser(email) {
-    return new Promise((resolve, reject) => {
-      axios
-        .get(`${config.helloPresentApiEndpoint}/wishlists/${email}`)
-        .then(response => {
-          resolve(response.data);
-        })
-        .catch(err => {
-          reject(err);
-        });
-    });
-  }
-
   static getUsersWishlist(email) {
     return new Promise((resolve, reject) => {
       axios

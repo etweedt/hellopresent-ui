@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './shopContent';
 import * as groupMemberActions from '../../actions/groupMemberActions';
+import * as shoppingWishlistActions from '../../actions/shoppingWishlistActions';
 
 export class browseContainer extends React.Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     getGroupMembers: PropTypes.func.isRequired,
     clearGroupMembers: PropTypes.func.isRequired,
-    // wishlists: PropTypes.array.isRequired,
-    // getShoppingWishlists: PropTypes.func.isRequired,
-    // clearShoppingWishlists: PropTypes.func.isRequired,
+    wishlist: PropTypes.object.isRequired,
+    getShoppingWishlist: PropTypes.func.isRequired,
+    clearShoppingWishlist: PropTypes.func.isRequired
     // claimItem: PropTypes.func.isRequired,
     // unclaimItem: PropTypes.func.isRequired
   };
@@ -34,15 +35,6 @@ export class browseContainer extends React.Component {
     if (auth.email !== nextProps.auth.email && nextProps.auth.email) {
       getGroupMembers(nextProps.auth.email);
     }
-
-    // if (this.props.wishlists.length === 0 && nextProps.wishlists.length > 0) {
-    //   this.setState({
-    //     selectedUser:
-    //       nextProps.wishlists[0].firstName +
-    //       ' ' +
-    //       nextProps.wishlists[0].lastName
-    //   });
-    // }
   }
 
   componentWillUnmount() {
@@ -51,28 +43,33 @@ export class browseContainer extends React.Component {
   }
 
   selectedChanged = event => {
-    this.setState({selectedUser: event.target.value});
+    const {getShoppingWishlist} = this.props;
+    const selected = event.target.value;
+
+    getShoppingWishlist(selected);
+    this.setState({selectedUser: selected});
   };
 
   onClaimChanged = (item, itemOwner) => {
-    const {auth, unclaimItem, claimItem} = this.props;
-
-    if (item.claimedBy === auth.email) {
-      unclaimItem(auth.email, item, itemOwner);
-    } else {
-      claimItem(auth.email, item, itemOwner);
-    }
+    // const {auth, unclaimItem, claimItem} = this.props;
+    // if (item.claimedBy === auth.email) {
+    //   unclaimItem(auth.email, item, itemOwner);
+    // } else {
+    //   claimItem(auth.email, item, itemOwner);
+    // }
   };
 
   render() {
-    const {groupMembers} = this.props;
+    const {auth, groupMembers, wishlist} = this.props;
     const {selectedUser} = this.state;
 
     return (
       <Content
+        auth={auth}
         selected={selectedUser}
         selectedChanged={this.selectedChanged}
         groupMembers={groupMembers}
+        wishlist={wishlist}
       />
     );
   }
@@ -81,8 +78,8 @@ export class browseContainer extends React.Component {
 export const mapStateToProps = state => {
   return {
     auth: state.auth,
-    groupMembers: state.groupMembers
-    // wishlists: state.shoppingWishlists
+    groupMembers: state.groupMembers,
+    wishlist: state.shoppingWishlist
   };
 };
 
@@ -93,13 +90,13 @@ export const mapDispatchToProps = dispatch => {
     },
     clearGroupMembers: () => {
       dispatch(groupMemberActions.clearUserGroupMembers());
+    },
+    getShoppingWishlist: email => {
+      dispatch(shoppingWishlistActions.getShoppingWishlist(email));
+    },
+    clearShoppingWishlist: () => {
+      dispatch(shoppingWishlistActions.clearShoppingWishlist());
     }
-    // getShoppingWishlists: email => {
-    //   dispatch(getAltWishlists(email));
-    // },
-    // clearShoppingWishlists: () => {
-    //   dispatch(clearAltWishlists());
-    // },
     // claimItem: (email, item, itemOwner) => {
     //   dispatch(claimWishlistItem(email, item, itemOwner));
     // },

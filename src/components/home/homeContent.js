@@ -10,7 +10,7 @@ const homeContent = ({auth, profile}) => {
         <div className="row">
           <div className="col-sm">
             <h1>
-              <i className="fa fa-home" /> Wishlist
+              <i className="fa fa-home" /> Home
             </h1>
           </div>
         </div>
