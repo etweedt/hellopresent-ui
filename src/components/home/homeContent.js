@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Button} from 'reactstrap';
 
 const homeContent = ({auth}) => {
@@ -72,4 +72,4 @@ homeContent.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-export default homeContent;
+export default withRouter(homeContent);

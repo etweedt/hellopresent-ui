@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink as Link} from 'react-router-dom';
+import {NavLink as Link, withRouter} from 'react-router-dom';
 
 const NotFoundPage = () => {
   return (
@@ -22,4 +22,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default withRouter(NotFoundPage);

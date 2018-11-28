@@ -10,7 +10,7 @@ import {
   NavbarBrand,
   NavbarToggler
 } from 'reactstrap';
-import {NavLink as Link} from 'react-router-dom';
+import {NavLink as Link, withRouter} from 'react-router-dom';
 import * as authActions from '../actions/authActions';
 
 export class navbarContainer extends React.Component {
@@ -132,7 +132,9 @@ export const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(navbarContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(navbarContainer)
+);
