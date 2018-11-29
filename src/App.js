@@ -8,7 +8,6 @@ import Claims from './components/claims/claimsContainer';
 import Profile from './components/user/userContainer';
 import toastr from 'toastr';
 import Auth from './auth/auth';
-import Callback from './components/loginCallback/callback';
 import NotFound from './components/notFoundPage';
 import Loader from './components/common/loader';
 import 'toastr/toastr.scss';
@@ -43,7 +42,7 @@ class App extends Component {
               path="/callback"
               render={props => {
                 handleAuthentication(props);
-                return <Callback {...props} />;
+                return <Loader forceVisible {...props} />;
               }}
             />
             <Route component={NotFound} />

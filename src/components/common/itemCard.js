@@ -39,9 +39,8 @@ const itemCard = ({item, listOwner, userName, onClaimChanged}) => {
           <PriceBadge value={item.priceTier} />
           <Button
             color={getClaimedColor()}
-            onClick={() => onClaimChanged(item, listOwner)}
-            // disabled={item.claimedBy && item.claimedBy !== userName}
-            disabled
+            onClick={() => onClaimChanged(item)}
+            disabled={item.claimedBy && item.claimedBy !== userName}
             title={
               item.claimedBy && item.claimedBy !== userName
                 ? 'Contact ' + item.claimedBy + ' with any complaints!'

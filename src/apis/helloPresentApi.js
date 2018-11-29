@@ -70,6 +70,53 @@ class HelloPresentApi {
         });
     });
   }
+
+  static claimItem(email, wishlistId, itemId) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${config.helloPresentApiEndpoint}/wishlists/items/claim`, {
+          userId: email,
+          wishlistId,
+          itemId
+        })
+        .then(response => {
+          resolve(response.data.wishlist);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
+  static unclaimItem(email, wishlistId, itemId) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${config.helloPresentApiEndpoint}/wishlists/items/unclaim`, {
+          userId: email,
+          wishlistId,
+          itemId
+        })
+        .then(response => {
+          resolve(response.data.wishlist);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
+  static getUserClaims(email) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${config.helloPresentApiEndpoint}/wishlists/claims/${email}`)
+        .then(response => {
+          resolve(response.data.claims);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
 }
 
 export default HelloPresentApi;

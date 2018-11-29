@@ -33,23 +33,22 @@ export function clearShoppingWishlist() {
   };
 }
 
-export function claimWishlistItem(email, item, itemOwner) {
+export function claimWishlistItem(email, wishlistId, itemId) {
   return {
     type: types.CLAIM_ITEM_STARTED,
     payload: {
       email,
-      item,
-      itemOwner
+      wishlistId,
+      itemId
     }
   };
 }
 
-export function claimWishlistItemComplete(item, itemOwner) {
+export function claimWishlistItemComplete(wishlist) {
   return {
     type: types.CLAIM_ITEM_COMPLETE,
     payload: {
-      item,
-      itemOwner
+      wishlist
     }
   };
 }
@@ -63,23 +62,23 @@ export function claimWishlistItemError(error) {
   };
 }
 
-export function unclaimWishlistItem(email, item, itemOwner) {
+export function unclaimWishlistItem(email, wishlistId, itemId, claimsPage) {
   return {
     type: types.UNCLAIM_ITEM_STARTED,
     payload: {
       email,
-      item,
-      itemOwner
+      wishlistId,
+      itemId,
+      claimsPage
     }
   };
 }
 
-export function unclaimWishlistItemComplete(item, itemOwner) {
+export function unclaimWishlistItemComplete(wishlist) {
   return {
     type: types.UNCLAIM_ITEM_COMPLETE,
     payload: {
-      item,
-      itemOwner
+      wishlist
     }
   };
 }

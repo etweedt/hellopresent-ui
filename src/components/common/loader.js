@@ -5,13 +5,14 @@ import Loader from 'react-loader-spinner';
 
 export class loader extends React.Component {
   static propTypes = {
-    loading: PropTypes.number.isRequired
+    loading: PropTypes.number.isRequired,
+    forceVisible: PropTypes.bool
   };
 
   render() {
-    const {loading} = this.props;
+    const {loading, forceVisible} = this.props;
 
-    if (loading > 0) {
+    if (loading > 0 || forceVisible) {
       return (
         <section>
           <div className="loader-page" />

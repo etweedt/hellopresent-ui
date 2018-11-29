@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
 import ItemCard from '../common/itemCard';
 
-const shopContent = ({auth, selected, selectedChanged, groupMembers, wishlist}) => {
+const shopContent = ({auth, selected, selectedChanged, groupMembers, wishlist, onClaimChanged}) => {
   const getName = member => {
     let retVal = member.firstName;
     if (member.lastName) {
@@ -59,7 +59,7 @@ const shopContent = ({auth, selected, selectedChanged, groupMembers, wishlist}) 
                       listOwner={wishlist.email}
                       item={item}
                       userName={auth.email}
-                      onClaimChanged={() => {}}
+                      onClaimChanged={onClaimChanged}
                     />
                   </div>
                 );
@@ -77,7 +77,8 @@ shopContent.propTypes = {
   selected: PropTypes.string,
   selectedChanged: PropTypes.func.isRequired,
   groupMembers: PropTypes.array.isRequired,
-  wishlist: PropTypes.object.isRequired
+  wishlist: PropTypes.object.isRequired,
+  onClaimChanged: PropTypes.func.isRequired
 };
 
 export default shopContent;

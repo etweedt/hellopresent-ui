@@ -41,12 +41,15 @@ export default class Auth {
   }
 
   logout = () => {
+    this.auth0.logout({federated: true, clientID: config.oAuthClientId});
+
     // Clear access token and ID token from local storage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    // navigate to the home route
-    window.location.href = window.location.origin;
+
+    // Log out the implicit grant token
+    window.location.href = `https://${config.oAuthDomain}/v2/logout`;
   };
 
   isAuthenticated = () => {

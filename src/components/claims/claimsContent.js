@@ -1,33 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from '../common/itemCard';
+import getSnark from './randomSnarkyMessage';
 
 const claimedContent = ({claims, userName, onClaimChanged}) => {
   return (
     <section>
-      <div className="row">
-        <div className="col-sm-1" />
-        <div className="col-sm-10">
+      <div className="row mb-3">
+        <div className="col-sm">
           <h1>
-            <i className="fa fa-tags" /> View your claimed gifts
+            <i className="fa fa-tags" /> Gifts you're going to buy
           </h1>
         </div>
       </div>
-      <div className="row">
-        <br />
-        <br />
-      </div>
       {claims.length > 0 && (
         <div className="row">
-          <div className="col-md-1" />
-          <div className="col-md-10">
+          <div className="col-sm">
             {claims.map((claim, index) => {
               return (
                 <div key={index} className="row">
                   <div className="col-sm">
                     <div className="row">
                       <div className="col-sm">
-                        <h4>For {claim.userName}</h4>
+                        <h6>
+                          For{' '}
+                          {claim.lastName
+                            ? `${claim.firstName} ${claim.lastName}`
+                            : `${claim.firstName}`}
+                        </h6>
+                        {claim.address && <pre>{claim.address}</pre>}
                       </div>
                     </div>
                     <div className="row">
@@ -38,7 +39,9 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
                               item={item}
                               listOwner={claim.email}
                               userName={userName}
-                              onClaimChanged={onClaimChanged}
+                              onClaimChanged={item =>
+                                onClaimChanged(item, claim)
+                              }
                             />
                           </div>
                         );
@@ -53,9 +56,8 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
       )}
       {claims.length === 0 && (
         <div className="row">
-          <div className="col-md-1" />
-          <div className="col-md-10">
-            <p>You have not claimed any gifts.</p>
+          <div className="col-sm">
+            <p>{getSnark()}</p>
           </div>
         </div>
       )}

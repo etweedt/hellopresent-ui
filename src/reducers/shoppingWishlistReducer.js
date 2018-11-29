@@ -10,6 +10,9 @@ export default function update(state = initialState.shoppingWishlist, action) {
     case types.UNCLAIM_ITEM_COMPLETE:
       return clone(action.payload.wishlist);
 
+    case types.CLEAR_SHOPPING_WISHLIST:
+      return initialState.shoppingWishlist;
+
     case types.GET_SHOPPING_WISHLIST_ERROR:
     case types.CLAIM_ITEM_ERROR:
     case types.UNCLAIM_ITEM_ERROR:

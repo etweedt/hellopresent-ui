@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './claimsContent';
-import {getUserClaims, clearUserClaims} from '../../actions/claimActions';
-import {unclaimWishlistItem} from '../../actions/shoppingWishlistActions';
-import clone from '../../utils/deepClone';
+import * as claimActions from '../../actions/claimActions';
+import * as wishlistActions from '../../actions/shoppingWishlistActions';
 
 export class claimedContainer extends React.Component {
   static propTypes = {
@@ -35,12 +34,10 @@ export class claimedContainer extends React.Component {
     clearClaims();
   }
 
-  onClaimChanged = (item, itemOwner) => {
-    const {auth} = this.props;
+  onClaimChanged = (item, wishlist) => {
+    const {auth, unclaimItem} = this.props;
 
-    if (item.claimedBy === auth.email) {
-      this.props.unclaimItem(auth.email, item, itemOwner);
-    }
+    unclaimItem(auth.email, wishlist.id, item.id, true);
   };
 
   render() {
@@ -49,7 +46,7 @@ export class claimedContainer extends React.Component {
     return (
       <Content
         claims={claims}
-        userName={auth.email}
+        userName={auth.email ? auth.email : ''}
         onClaimChanged={this.onClaimChanged}
       />
     );
@@ -57,33 +54,24 @@ export class claimedContainer extends React.Component {
 }
 
 export const mapStateToProps = state => {
-  const alteredClaims = clone(state.claims);
-  const toRemove = [];
-  alteredClaims.forEach(c => {
-    if (c.items.length === 0) {
-      toRemove.push(c);
-    }
-  });
-  toRemove.forEach(r => {
-    alteredClaims.splice(alteredClaims.indexOf(r), 1);
-  });
-
   return {
     auth: state.auth,
-    claims: alteredClaims
+    claims: state.claims
   };
 };
 
 export const mapDispatchToProps = dispatch => {
   return {
     getClaims: email => {
-      dispatch(getUserClaims(email));
+      dispatch(claimActions.getClaims(email));
     },
     clearClaims: () => {
-      dispatch(clearUserClaims());
+      dispatch(claimActions.clearClaims());
     },
-    unclaimItem: (email, item, itemOwner) => {
-      dispatch(unclaimWishlistItem(email, item, itemOwner));
+    unclaimItem: (email, wishlistId, itemId) => {
+      dispatch(
+        wishlistActions.unclaimWishlistItem(email, wishlistId, itemId, true)
+      );
     }
   };
 };

@@ -1,34 +1,34 @@
 import * as types from '../constants/actionTypes';
 
-export function getUserClaims(email) {
+export function getClaims(email) {
   return {
-    type: types.GET_USER_CLAIMS_STARTED,
+    type: types.GET_CLAIMS_STARTED,
     payload: {
       email
     }
   };
 }
 
-export function getUserClaimsComplete(claims) {
+export function getClaimsComplete(claims) {
   return {
-    type: types.GET_USER_CLAIMS_COMPLETE,
+    type: types.GET_CLAIMS_COMPLETED,
     payload: {
       claims
     }
   };
 }
 
-export function getUserClaimsError(error) {
+export function getClaimsError(error) {
   return {
-    type: types.GET_USER_CLAIMS_ERROR,
+    type: types.GET_CLAIMS_ERROR,
     payload: {
       error
     }
   };
 }
 
-export function clearUserClaims() {
+export function clearClaims() {
   return {
-    type: types.CLEAR_USER_CLAIMS
+    type: types.CLEAR_CLAIMS
   };
 }

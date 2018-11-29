@@ -12,9 +12,9 @@ export class browseContainer extends React.Component {
     clearGroupMembers: PropTypes.func.isRequired,
     wishlist: PropTypes.object.isRequired,
     getShoppingWishlist: PropTypes.func.isRequired,
-    clearShoppingWishlist: PropTypes.func.isRequired
-    // claimItem: PropTypes.func.isRequired,
-    // unclaimItem: PropTypes.func.isRequired
+    clearShoppingWishlist: PropTypes.func.isRequired,
+    claimItem: PropTypes.func.isRequired,
+    unclaimItem: PropTypes.func.isRequired
   };
 
   state = {
@@ -38,8 +38,9 @@ export class browseContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    const {clearGroupMembers} = this.props;
+    const {clearGroupMembers, clearShoppingWishlist} = this.props;
     clearGroupMembers();
+    clearShoppingWishlist();
   }
 
   selectedChanged = event => {
@@ -50,13 +51,14 @@ export class browseContainer extends React.Component {
     this.setState({selectedUser: selected});
   };
 
-  onClaimChanged = (item, itemOwner) => {
-    // const {auth, unclaimItem, claimItem} = this.props;
-    // if (item.claimedBy === auth.email) {
-    //   unclaimItem(auth.email, item, itemOwner);
-    // } else {
-    //   claimItem(auth.email, item, itemOwner);
-    // }
+  onClaimChanged = item => {
+    const {auth, wishlist, claimItem, unclaimItem} = this.props;
+
+    if (item.claimedBy === auth.email) {
+      unclaimItem(auth.email, wishlist.id, item._id);
+    } else {
+      claimItem(auth.email, wishlist.id, item._id);
+    }
   };
 
   render() {
@@ -70,6 +72,7 @@ export class browseContainer extends React.Component {
         selectedChanged={this.selectedChanged}
         groupMembers={groupMembers}
         wishlist={wishlist}
+        onClaimChanged={this.onClaimChanged}
       />
     );
   }
@@ -96,13 +99,17 @@ export const mapDispatchToProps = dispatch => {
     },
     clearShoppingWishlist: () => {
       dispatch(shoppingWishlistActions.clearShoppingWishlist());
+    },
+    claimItem: (email, wishlistId, itemId) => {
+      dispatch(
+        shoppingWishlistActions.claimWishlistItem(email, wishlistId, itemId)
+      );
+    },
+    unclaimItem: (email, wishlistId, itemId) => {
+      dispatch(
+        shoppingWishlistActions.unclaimWishlistItem(email, wishlistId, itemId)
+      );
     }
-    // claimItem: (email, item, itemOwner) => {
-    //   dispatch(claimWishlistItem(email, item, itemOwner));
-    // },
-    // unclaimItem: (email, item, itemOwner) => {
-    //   dispatch(unclaimWishlistItem(email, item, itemOwner));
-    // }
   };
 };
 
