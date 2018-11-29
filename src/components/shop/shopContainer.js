@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './shopContent';
-import * as groupMemberActions from '../../actions/groupMemberActions';
+// import * as groupMemberActions from '../../actions/groupMemberActions';
+import * as userActions from '../../actions/userActions';
 import * as shoppingWishlistActions from '../../actions/shoppingWishlistActions';
 
 export class browseContainer extends React.Component {
@@ -62,7 +63,7 @@ export class browseContainer extends React.Component {
   };
 
   render() {
-    const {auth, groupMembers, wishlist} = this.props;
+    const {auth, allUsers, wishlist} = this.props;
     const {selectedUser} = this.state;
 
     return (
@@ -70,7 +71,7 @@ export class browseContainer extends React.Component {
         auth={auth}
         selected={selectedUser}
         selectedChanged={this.selectedChanged}
-        groupMembers={groupMembers}
+        groupMembers={allUsers}
         wishlist={wishlist}
         onClaimChanged={this.onClaimChanged}
       />
@@ -79,8 +80,18 @@ export class browseContainer extends React.Component {
 }
 
 export const mapStateToProps = state => {
+  const otherUsers = state.allUsers;
+  const found = otherUsers.find(user => {
+    return user.id === state.auth.email;
+  });
+
+  if (found) {
+    otherUsers.splice(otherUsers.indexOf(found), 1);
+  }
+
   return {
     auth: state.auth,
+    allUsers: otherUsers,
     groupMembers: state.groupMembers,
     wishlist: state.shoppingWishlist
   };
@@ -89,10 +100,12 @@ export const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => {
   return {
     getGroupMembers: email => {
-      dispatch(groupMemberActions.getUserGroupMembers(email));
+      dispatch(userActions.getAllUsers());
+      //dispatch(groupMemberActions.getUserGroupMembers(email));
     },
     clearGroupMembers: () => {
-      dispatch(groupMemberActions.clearUserGroupMembers());
+      dispatch(userActions.clearAllUsers());
+      //dispatch(groupMemberActions.clearUserGroupMembers());
     },
     getShoppingWishlist: email => {
       dispatch(shoppingWishlistActions.getShoppingWishlist(email));

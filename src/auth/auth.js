@@ -49,7 +49,9 @@ export default class Auth {
     localStorage.removeItem('expires_at');
 
     // Log out the implicit grant token
-    window.location.href = `https://${config.oAuthDomain}/v2/logout`;
+    window.location.href = `https://${
+      config.oAuthDomain
+    }/v2/logout?returnTo=${window.location.origin}`;
   };
 
   isAuthenticated = () => {

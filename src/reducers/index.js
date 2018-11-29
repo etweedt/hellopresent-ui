@@ -6,6 +6,7 @@ import shoppingWishlist from './shoppingWishlistReducer';
 import claims from './claimsReducer';
 import userInfo from './userInfoReducer';
 import groupMembers from './groupMembersReducer';
+import allUsers from './allUsersReducer';
 
 export default combineReducers({
   loading,
@@ -14,5 +15,6 @@ export default combineReducers({
   shoppingWishlist,
   claims,
   userInfo,
-  groupMembers
+  groupMembers,
+  allUsers
 });

@@ -4,7 +4,8 @@ import * as userWishlist from './userWishlistSaga';
 import * as shoppingWishlist from './shoppingWishlistSaga';
 import * as claims from './claimSaga';
 import * as userInfo from './userInfoSaga';
-import * as groupMembers from './groupMembersSaga';
+import * as group from './groupSaga';
+import * as users from './usersSaga';
 
 export default function* root() {
   yield all([
@@ -19,6 +20,9 @@ export default function* root() {
     claims.watchGetClaims(),
     userInfo.watchRetrieveUserInfo(),
     userInfo.watchUpdateUserInfo(),
-    groupMembers.watchGetGroupMembers()
+    group.watchGetGroupMembers(),
+    group.watchAddMemberToUserGroup(),
+    group.watchRemoveMemberFromUserGroup(),
+    users.watchGetGroupMembers()
   ]);
 }

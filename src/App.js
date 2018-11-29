@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/navbar';
 import Home from './components/home/homeContainer';
 import Wishlist from './components/wishlist/wishlistContainer';
+import Group from './components/group/groupContainer';
 import Shop from './components/shop/shopContainer';
 import Claims from './components/claims/claimsContainer';
 import Profile from './components/user/userContainer';
@@ -35,6 +36,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/mylist" component={Wishlist} />
+            <Route exact path="/group" component={Group} />
             <Route exact path="/shop" component={Shop} />
             <Route exact path="/claims" component={Claims} />
             <Route exact path="/profile" component={Profile} />

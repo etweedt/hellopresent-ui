@@ -50,6 +50,11 @@ export class userContainer extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    const {clearUserInfo} = this.props;
+    clearUserInfo();
+  }
+
   userInfoChanged = event => {
     const updated = clone(this.state.toEdit);
     updated[event.target.name] = event.target.value;

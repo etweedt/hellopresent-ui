@@ -5,5 +5,6 @@ export default {
   shoppingWishlist: {},
   claims: [],
   userInfo: {},
-  groupMembers: []
+  groupMembers: [],
+  allUsers: []
 };
