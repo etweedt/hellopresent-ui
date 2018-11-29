@@ -49,5 +49,6 @@ Clone this repo from GitHub on a docker-ready server. From the project directory
 
 ```
 sudo docker build -t hellopresent-ui .
+sudo docker stop hellopresent-ui && sudo docker rm hellopresent-ui
 sudo docker run -p 50001:5000 --name hellopresent-ui --restart always -d hellopresent-ui
 ```
