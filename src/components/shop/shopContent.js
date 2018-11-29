@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
 import ItemCard from '../common/itemCard';
 
-const shopContent = ({auth, selected, selectedChanged, groupMembers, wishlist, onClaimChanged}) => {
+const shopContent = ({
+  auth,
+  selected,
+  selectedChanged,
+  groupMembers,
+  wishlist,
+  onClaimChanged
+}) => {
   const getName = member => {
     let retVal = member.firstName;
     if (member.lastName) {
@@ -64,6 +71,11 @@ const shopContent = ({auth, selected, selectedChanged, groupMembers, wishlist, o
                   </div>
                 );
               })}
+              {wishlist.items.length === 0 && (
+                <div className="col-sm">
+                  <p>Nothing has been added to this wishlist yet!</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

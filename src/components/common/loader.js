@@ -17,7 +17,7 @@ export class loader extends React.Component {
         <section>
           <div className="loader-page" />
           <div className="loader">
-            <Loader type="Triangle" color="#5bc0de" height={120} width={120} />
+            <Loader type="Oval" color="#5bc0de" height={80} width={80} />
           </div>
         </section>
       );

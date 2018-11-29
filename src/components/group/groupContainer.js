@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './groupContent';
+import Confirm from '../modals/confirmRemoveGroupModal';
 import * as groupActions from '../../actions/groupActions';
 
 export class groupContainer extends React.Component {
@@ -12,6 +13,11 @@ export class groupContainer extends React.Component {
     clearGroupMembers: PropTypes.func.isRequired,
     addGroupMember: PropTypes.func.isRequired,
     removeGroupMember: PropTypes.func.isRequired
+  };
+
+  state = {
+    activeTab: 'members',
+    showConfirmModal: false
   };
 
   componentWillMount() {
@@ -35,10 +41,53 @@ export class groupContainer extends React.Component {
     clearGroupMembers();
   }
 
+  switchTab = tab => {
+    this.setState({
+      activeTab: tab
+    });
+  };
+
+  onRemoveMember = member => {
+    this.setState({
+      toRemove: member,
+      showConfirmModal: true
+    });
+  };
+
+  onConfirmRemoveMember = () => {
+    const {auth, removeGroupMember} = this.props;
+    const {toRemove} = this.state;
+
+    removeGroupMember(auth.email, toRemove.email);
+    this.onCancelRemove();
+  };
+
+  onCancelRemove = () => {
+    this.setState({
+      toRemove: {},
+      showConfirmModal: false
+    });
+  };
+
   render() {
     const {groupMembers} = this.props;
+    const {activeTab, showConfirmModal} = this.state;
 
-    return <Content groupMembers={groupMembers} />;
+    return (
+      <section>
+        <Content
+          groupMembers={groupMembers}
+          activeTab={activeTab}
+          onSwitchTab={this.switchTab}
+          onRemoveMember={this.onRemoveMember}
+        />
+        <Confirm
+          isOpen={showConfirmModal}
+          closeModal={this.onCancelRemove}
+          confirmModal={this.onConfirmRemoveMember}
+        />
+      </section>
+    );
   }
 }
 

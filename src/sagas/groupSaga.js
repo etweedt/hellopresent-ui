@@ -31,7 +31,7 @@ export function* addMemberToUserGroup(action) {
 export function* removeMemberFromUserGroup(action) {
   try {
     const groupMembers = yield call(
-      Api.addMemberToUserGroup,
+      Api.removeMemberFromUserGroup,
       action.payload.userEmail,
       action.payload.memberEmail
     );
