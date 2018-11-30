@@ -10,7 +10,7 @@ const userContent = ({userInfo, userInfoChanged, saveUserInfo}) => {
           <h1>
             <i className="fa fa-user" /> Your profile
           </h1>
-          <p>Add some details about yourself so other people can shop for you.</p>
+          <p>Details about yourself so other people can shop for you</p>
         </div>
       </div>
       <div className="row">

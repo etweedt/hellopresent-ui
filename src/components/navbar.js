@@ -62,11 +62,11 @@ export class navbarContainer extends React.Component {
                   My List
                 </NavLink>
               </NavItem>
-              {/* <NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/group" onClick={this.navbarClose}>
                   My Group
                 </NavLink>
-              </NavItem> */}
+              </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/shop" onClick={this.navbarClose}>
                   Shop

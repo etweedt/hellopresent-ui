@@ -74,11 +74,12 @@ export function unclaimWishlistItem(email, wishlistId, itemId, claimsPage) {
   };
 }
 
-export function unclaimWishlistItemComplete(wishlist) {
+export function unclaimWishlistItemComplete(wishlist, claimsPage) {
   return {
     type: types.UNCLAIM_ITEM_COMPLETE,
     payload: {
-      wishlist
+      wishlist,
+      claimsPage
     }
   };
 }

@@ -7,6 +7,7 @@ import claims from './claimsReducer';
 import userInfo from './userInfoReducer';
 import groupMembers from './groupMembersReducer';
 import allUsers from './allUsersReducer';
+import searchResults from './searchResultsReducer';
 
 export default combineReducers({
   loading,
@@ -16,5 +17,6 @@ export default combineReducers({
   claims,
   userInfo,
   groupMembers,
-  allUsers
+  allUsers,
+  searchResults
 });

@@ -6,6 +6,7 @@ import * as claims from './claimSaga';
 import * as userInfo from './userInfoSaga';
 import * as group from './groupSaga';
 import * as users from './usersSaga';
+import * as search from './searchSaga';
 
 export default function* root() {
   yield all([
@@ -23,6 +24,7 @@ export default function* root() {
     group.watchGetGroupMembers(),
     group.watchAddMemberToUserGroup(),
     group.watchRemoveMemberFromUserGroup(),
-    users.watchGetGroupMembers()
+    users.watchGetGroupMembers(),
+    search.watchSearchForMembers()
   ]);
 }

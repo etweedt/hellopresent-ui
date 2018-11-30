@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap';
 import MemberCard from './memberCard';
+import AddMembers from './addMembers';
 
 const groupContent = ({
   groupMembers,
   activeTab,
   onSwitchTab,
+  onAddMember,
   onRemoveMember
 }) => {
   return (
@@ -14,8 +16,9 @@ const groupContent = ({
       <div className="row mb-4">
         <div className="col-sm">
           <h1>
-            <i className="fa fa-group" /> Your gifting circle
+            <i className="fa fa-group" /> My Group
           </h1>
+          <p>Friends or family who you would like to shop for</p>
         </div>
       </div>
       <div className="row">
@@ -46,6 +49,7 @@ const groupContent = ({
                         <div key={member._id} className="col-lg-4 col-md-6">
                           <MemberCard
                             member={member}
+                            isAdd={false}
                             onRemoveMember={onRemoveMember}
                           />
                         </div>
@@ -62,7 +66,13 @@ const groupContent = ({
             </TabPane>
             <TabPane tabId="add">
               <div className="row mt-4">
-                <div className="col-sm">Add</div>
+                <div className="col-sm">
+                  <AddMembers
+                    onAddMember={onAddMember}
+                    members={groupMembers}
+                    activeTab={activeTab}
+                  />
+                </div>
               </div>
             </TabPane>
           </TabContent>
@@ -76,6 +86,7 @@ groupContent.propTypes = {
   groupMembers: PropTypes.array.isRequired,
   activeTab: PropTypes.string.isRequired,
   onSwitchTab: PropTypes.func.isRequired,
+  onAddMember: PropTypes.func.isRequired,
   onRemoveMember: PropTypes.func.isRequired
 };
 

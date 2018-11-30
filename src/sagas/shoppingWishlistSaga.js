@@ -35,10 +35,12 @@ export function* unclaimItem(action) {
       action.payload.wishlistId,
       action.payload.itemId
     );
-    yield put(actions.unclaimWishlistItemComplete(wishlist));
 
     if (action.payload.claimsPage) {
       yield put(getClaims(action.payload.email));
+      yield put(actions.unclaimWishlistItemComplete(wishlist, true));
+    } else {
+      yield put(actions.unclaimWishlistItemComplete(wishlist, false));
     }
   } catch (e) {
     yield put(actions.unclaimWishlistItemError(e));

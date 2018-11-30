@@ -10,7 +10,11 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -23,7 +27,11 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -38,7 +46,11 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -51,7 +63,11 @@ class HelloPresentApi {
           resolve(response.data.wishlist);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -66,7 +82,11 @@ class HelloPresentApi {
           resolve(response.data.wishlist);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -83,7 +103,11 @@ class HelloPresentApi {
           resolve(response.data.wishlist);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -100,7 +124,11 @@ class HelloPresentApi {
           resolve(response.data.wishlist);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -113,7 +141,11 @@ class HelloPresentApi {
           resolve(response.data.claims);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -126,7 +158,11 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }
@@ -141,7 +177,7 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err);
+          reject(err.response.data.response.data);
         });
     });
   }
@@ -156,7 +192,32 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err);
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
+        });
+    });
+  }
+
+  static getMemberSearchResults(userEmail, searchString) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${
+            config.helloPresentApiEndpoint
+          }/search?searchString=${searchString}&userId=${userEmail}`
+        )
+        .then(result => {
+          resolve(result.data.searchResults);
+        })
+        .catch(err => {
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
         });
     });
   }

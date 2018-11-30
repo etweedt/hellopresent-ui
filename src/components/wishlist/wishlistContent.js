@@ -8,8 +8,9 @@ const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
       <div className="row mb-3">
         <div className="col-sm">
           <h1>
-            <i className="fa fa-list-alt" /> Manage your items
+            <i className="fa fa-list-alt" /> My List
           </h1>
+          <p>Items in your wishlist</p>
         </div>
       </div>
       <div className="row">

@@ -9,8 +9,9 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
       <div className="row mb-3">
         <div className="col-sm">
           <h1>
-            <i className="fa fa-tags" /> Gifts you're going to buy
+            <i className="fa fa-tags" /> Claims
           </h1>
+          <p>Items you have claimed to purchase for others</p>
         </div>
       </div>
       {claims.length > 0 && (

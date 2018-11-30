@@ -47,6 +47,11 @@ export class groupContainer extends React.Component {
     });
   };
 
+  onAddMember = member => {
+    const {auth, addGroupMember} = this.props;
+    addGroupMember(auth.email, member.email);
+  };
+
   onRemoveMember = member => {
     this.setState({
       toRemove: member,
@@ -79,6 +84,7 @@ export class groupContainer extends React.Component {
           groupMembers={groupMembers}
           activeTab={activeTab}
           onSwitchTab={this.switchTab}
+          onAddMember={this.onAddMember}
           onRemoveMember={this.onRemoveMember}
         />
         <Confirm

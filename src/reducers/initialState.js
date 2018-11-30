@@ -6,5 +6,6 @@ export default {
   claims: [],
   userInfo: {},
   groupMembers: [],
-  allUsers: []
+  allUsers: [],
+  searchResults: []
 };

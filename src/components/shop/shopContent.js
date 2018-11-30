@@ -16,6 +16,11 @@ const shopContent = ({
     if (member.lastName) {
       retVal += ` ${member.lastName}`;
     }
+
+    if (!retVal) {
+      retVal = member.email;
+    }
+
     return retVal;
   };
 
@@ -24,8 +29,9 @@ const shopContent = ({
       <div className="row mb-3">
         <div className="col-sm">
           <h1>
-            <i className="fa fa-gift" /> Find gifts for others
+            <i className="fa fa-gift" /> Shop
           </h1>
+          <p>View items for people you have added to your group</p>
         </div>
       </div>
       <div className="row">
@@ -40,22 +46,18 @@ const shopContent = ({
                 value={selected}>
                 <option value="" disabled />
                 {groupMembers.map(member => {
-                  if (member.firstName) {
-                    return (
-                      <option key={member.id} value={member.id}>
-                        {getName(member)}
-                      </option>
-                    );
-                  } else {
-                    return null;
-                  }
+                  return (
+                    <option key={member.email} value={member.email}>
+                      {getName(member)}
+                    </option>
+                  );
                 })}
               </Input>
             </FormGroup>
           </Form>
         </div>
       </div>
-      {wishlist.email && (
+      {wishlist.email ? (
         <div className="row">
           <div className="col-sm">
             <div className="row">
@@ -77,6 +79,16 @@ const shopContent = ({
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      ) : (
+        <div className="row">
+          <div className="col-sm">
+            {groupMembers.length > 0 ? (
+              <p>Select a user to see their list.</p>
+            ) : (
+              <p>Add some users to your group to start shopping.</p>
+            )}
           </div>
         </div>
       )}
