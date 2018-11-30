@@ -51,8 +51,8 @@ const homeContent = ({auth, profile, groupMembers, wishlist, claims}) => {
                 <div className="row">
                   <div className="col-sm">
                     <p>
-                      Welcome to Hello, Present! It looks like you have some
-                      things to get set up:
+                      Welcome to Hello, Present! It looks like you have a few
+                      things that could use some attention:
                     </p>
                     {(!profile.firstName ||
                       !profile.lastName ||
