@@ -31,6 +31,7 @@ export class addMembers extends React.Component {
 
       this.setState({
         searchString: '',
+        noResultsMessage: '',
         timer: null
       });
     }
@@ -54,6 +55,7 @@ export class addMembers extends React.Component {
 
     this.setState({
       searchString: event.target.value,
+      noResultsMessage: '',
       timer: newTimer
     });
   };
@@ -64,14 +66,21 @@ export class addMembers extends React.Component {
 
     if (searchString.length >= 3) {
       searchMembers(auth.email, searchString);
+      this.setState({
+        noResultsMessage:
+          'Your search did not turn up any Hello, Present! member results.'
+      });
     } else {
       clearResults();
+      this.setState({
+        noResultsMessage: ''
+      });
     }
   };
 
   render() {
     const {searchResults, onAddMember, members} = this.props;
-    const {searchString} = this.state;
+    const {searchString, noResultsMessage} = this.state;
 
     return (
       <section>
@@ -106,7 +115,9 @@ export class addMembers extends React.Component {
             <div className="row">
               {searchResults.map(result => {
                 return (
-                  <div key={result.email} className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                  <div
+                    key={result.email}
+                    className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <MemberCard
                       member={result}
                       isAdd={true}
@@ -116,6 +127,11 @@ export class addMembers extends React.Component {
                   </div>
                 );
               })}
+              {searchString.length >= 3 && searchResults.length === 0 && (
+                <div className="col-sm">
+                  <p>{noResultsMessage}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
