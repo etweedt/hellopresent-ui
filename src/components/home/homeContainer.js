@@ -25,10 +25,19 @@ export class homeContainer extends React.Component {
   };
 
   componentWillMount() {
-    const {auth, getUserInfo} = this.props;
+    const {
+      auth,
+      getUserInfo,
+      getGroupMembers,
+      getWishlist,
+      getClaims
+    } = this.props;
 
     if (auth.email) {
       getUserInfo(auth.email);
+      getWishlist(auth.email);
+      getGroupMembers(auth.email);
+      getClaims(auth.email);
     }
   }
 
