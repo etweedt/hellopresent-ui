@@ -46,7 +46,7 @@ const groupContent = ({
                   <div className="row">
                     {groupMembers.map(member => {
                       return (
-                        <div key={member._id} className="col-lg-3 col-md-4">
+                        <div key={member._id} className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                           <MemberCard
                             member={member}
                             isAdd={false}

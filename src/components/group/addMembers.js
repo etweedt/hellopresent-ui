@@ -106,7 +106,7 @@ export class addMembers extends React.Component {
             <div className="row">
               {searchResults.map(result => {
                 return (
-                  <div key={result.email} className="col-lg-3 col-md-4">
+                  <div key={result.email} className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <MemberCard
                       member={result}
                       isAdd={true}
