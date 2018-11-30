@@ -177,7 +177,7 @@ class HelloPresentApi {
           resolve(response.data);
         })
         .catch(err => {
-          reject(err.response.data.response.data);
+          reject(err.response.data);
         });
     });
   }
