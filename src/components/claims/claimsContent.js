@@ -35,7 +35,7 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
                     <div className="row">
                       {claim.items.map((item, iIdx) => {
                         return (
-                          <div key={iIdx} className="col-sm-4">
+                          <div key={iIdx} className="col-xl-4 col-lg-6 col-md-12">
                             <ItemCard
                               item={item}
                               listOwner={claim.email}

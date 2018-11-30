@@ -30,7 +30,9 @@ const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
           <div className="row">
             {wishlist.map((item, index) => {
               return (
-                <div key={index} className="col-lg-4 col-md-6">
+                <div
+                  key={index}
+                  className="col-xl-4 col-lg-6 col-md-12">
                   <ItemCard
                     wishlistItem={item}
                     onEdit={onEdit}
