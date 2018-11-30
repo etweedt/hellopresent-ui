@@ -24,6 +24,9 @@ export default function update(state = initialState.groupMembers, action) {
       toastr.error(action.payload.error);
       return state;
 
+    case types.CLEAR_GROUP_MEMBERS:
+      return initialState.groupMembers;
+
     default:
       return state;
   }
