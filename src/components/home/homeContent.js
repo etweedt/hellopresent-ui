@@ -26,6 +26,11 @@ const homeContent = ({auth, profile}) => {
               </Link>
               <br />
               <br />
+              <Link to="/group">
+                <Button color="primary">Add People</Button>
+              </Link>
+              <br />
+              <br />
               <Link to="/shop">
                 <Button color="primary">Browse Other Wishlists</Button>
               </Link>
