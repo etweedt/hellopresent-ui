@@ -70,7 +70,7 @@ const groupContent = ({
                     })}
                     {groupMembers.length === 0 && (
                       <div className="col-sm">
-                        You haven't added anyone yet.
+                        <p>You haven't added anyone yet.</p>
                       </div>
                     )}
                   </div>
