@@ -38,7 +38,7 @@ const groupContent = ({
                 onClick={() => {
                   onSwitchTab('mutual');
                 }}>
-                Added You Back
+                Added You
               </NavLink>
             </NavItem>
             <NavItem className="clickable">
