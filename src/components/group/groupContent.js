@@ -7,6 +7,7 @@ import MutualMembers from './mutualGroupMembers';
 
 const groupContent = ({
   groupMembers,
+  mutualGroupMembers,
   activeTab,
   onSwitchTab,
   onAddMember,
@@ -79,7 +80,7 @@ const groupContent = ({
             <TabPane tabId="mutual">
               <div className="row mt-4">
                 <div className="col-sm">
-                  <MutualMembers groupMembers={groupMembers} />
+                  <MutualMembers mutualGroupMembers={mutualGroupMembers} />
                 </div>
               </div>
             </TabPane>
@@ -103,6 +104,7 @@ const groupContent = ({
 
 groupContent.propTypes = {
   groupMembers: PropTypes.array.isRequired,
+  mutualGroupMembers: PropTypes.array.isRequired,
   activeTab: PropTypes.string.isRequired,
   onSwitchTab: PropTypes.func.isRequired,
   onAddMember: PropTypes.func.isRequired,

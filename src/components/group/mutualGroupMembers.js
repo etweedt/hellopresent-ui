@@ -1,36 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import * as groupActions from '../../actions/groupActions';
 import {Card, CardBody, CardText, CardTitle} from 'reactstrap';
 
 export class mutualGroupMembers extends React.Component {
   static propTypes = {
-    auth: PropTypes.object.isRequired,
-    groupMembers: PropTypes.array.isRequired,
-    mutualGroupMembers: PropTypes.array.isRequired,
-    getMutualGroupMembers: PropTypes.func.isRequired,
-    clearMutualGroupMembers: PropTypes.func.isRequired
+    mutualGroupMembers: PropTypes.array.isRequired
   };
-
-  componenetWillMount() {
-    const {auth, getMutualGroupMembers} = this.props;
-
-    getMutualGroupMembers(auth.email);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {auth, groupMembers, getMutualGroupMembers} = this.props;
-
-    if (nextProps.groupMembers.length !== groupMembers.length) {
-      getMutualGroupMembers(auth.email);
-    }
-  }
-
-  componentWillUnmount() {
-    const {clearMutualGroupMembers} = this.props;
-    clearMutualGroupMembers();
-  }
 
   getName = member => {
     let name = '';
@@ -67,7 +42,7 @@ export class mutualGroupMembers extends React.Component {
           );
         })}
         {mutualGroupMembers.length === 0 && (
-          <div cassName="col-sm">
+          <div className="col-sm">
             <p>No one has added you yet.</p>
           </div>
         )}
@@ -76,25 +51,4 @@ export class mutualGroupMembers extends React.Component {
   }
 }
 
-export const mapStateToProps = state => {
-  return {
-    auth: state.auth,
-    mutualGroupMembers: state.mutualGroupMembers
-  };
-};
-
-export const mapDispatchToProps = dispatch => {
-  return {
-    getMutualGroupMembers: userId => {
-      dispatch(groupActions.getMutualGroupMembers(userId));
-    },
-    clearMutualGroupMembers: () => {
-      dispatch(groupActions.clearMutualGroupMembers());
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(mutualGroupMembers);
+export default mutualGroupMembers;

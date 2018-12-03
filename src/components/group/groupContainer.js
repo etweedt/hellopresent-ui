@@ -9,10 +9,13 @@ export class groupContainer extends React.Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     groupMembers: PropTypes.array.isRequired,
+    mutualGroupMembers: PropTypes.array.isRequired,
     getGroupMembers: PropTypes.func.isRequired,
     clearGroupMembers: PropTypes.func.isRequired,
     addGroupMember: PropTypes.func.isRequired,
-    removeGroupMember: PropTypes.func.isRequired
+    removeGroupMember: PropTypes.func.isRequired,
+    getMutualGroupMembers: PropTypes.func.isRequired,
+    clearMutualGroupMembers: PropTypes.func.isRequired
   };
 
   state = {
@@ -21,24 +24,28 @@ export class groupContainer extends React.Component {
   };
 
   componentWillMount() {
-    const {auth, getGroupMembers} = this.props;
+    const {auth, getGroupMembers, getMutualGroupMembers} = this.props;
 
     if (auth.email) {
       getGroupMembers(auth.email);
+      getMutualGroupMembers(auth.email);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const {auth, getGroupMembers} = this.props;
+    const {auth, getGroupMembers, getMutualGroupMembers} = this.props;
 
     if (auth.email !== nextProps.auth.email && nextProps.auth.email) {
       getGroupMembers(nextProps.auth.email);
+      getMutualGroupMembers(nextProps.auth.email);
     }
   }
 
   componentWillUnmount() {
-    const {clearGroupMembers} = this.props;
+    const {clearGroupMembers, clearMutualGroupMembers} = this.props;
+
     clearGroupMembers();
+    clearMutualGroupMembers();
   }
 
   switchTab = tab => {
@@ -75,13 +82,14 @@ export class groupContainer extends React.Component {
   };
 
   render() {
-    const {groupMembers} = this.props;
+    const {groupMembers, mutualGroupMembers} = this.props;
     const {activeTab, showConfirmModal} = this.state;
 
     return (
       <section>
         <Content
           groupMembers={groupMembers}
+          mutualGroupMembers={mutualGroupMembers}
           activeTab={activeTab}
           onSwitchTab={this.switchTab}
           onAddMember={this.onAddMember}
@@ -100,7 +108,8 @@ export class groupContainer extends React.Component {
 export const mapStateToProps = state => {
   return {
     auth: state.auth,
-    groupMembers: state.groupMembers
+    groupMembers: state.groupMembers,
+    mutualGroupMembers: state.mutualGroupMembers
   };
 };
 
@@ -117,6 +126,12 @@ export const mapDispatchToProps = dispatch => {
     },
     removeGroupMember: (userEmail, memberEmail) => {
       dispatch(groupActions.removeGroupMember(userEmail, memberEmail));
+    },
+    getMutualGroupMembers: userId => {
+      dispatch(groupActions.getMutualGroupMembers(userId));
+    },
+    clearMutualGroupMembers: () => {
+      dispatch(groupActions.clearMutualGroupMembers());
     }
   };
 };
