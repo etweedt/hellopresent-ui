@@ -88,3 +88,36 @@ export function removeGroupMemberError(error) {
     }
   };
 }
+
+export function getMutualGroupMembers(userId) {
+  return {
+    type: types.GET_MUTUAL_GROUP_MEMBERS_STARTED,
+    payload: {
+      userId
+    }
+  };
+}
+
+export function getMutualGroupMembersCompleted(mutualGroupMembers) {
+  return {
+    type: types.GET_MUTUAL_GROUP_MEMBERS_COMPLETED,
+    payload: {
+      mutualGroupMembers
+    }
+  };
+}
+
+export function getMutualGroupMembersError(error) {
+  return {
+    type: types.GET_MUTUAL_GROUP_MEMBERS_ERROR,
+    payload: {
+      error
+    }
+  };
+}
+
+export function clearMutualGroupMembers() {
+  return {
+    type: types.CLEAR_MUTUAL_GROUP_MEMBERS
+  };
+}

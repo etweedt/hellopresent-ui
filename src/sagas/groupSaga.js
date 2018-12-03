@@ -41,6 +41,20 @@ export function* removeMemberFromUserGroup(action) {
   }
 }
 
+export function* getMutualGroupMembers(action) {
+  try {
+    const mutualGroupMembers = yield call(
+      Api.getMutualGroupMembers,
+      action.payload.userId
+    );
+    yield put(
+      actions.getMutualGroupMembersCompleted(mutualGroupMembers.members)
+    );
+  } catch (e) {
+    yield put(actions.getMutualGroupMembersError(e));
+  }
+}
+
 export function* watchGetGroupMembers() {
   yield takeEvery(types.GET_GROUP_MEMBERS_STARTED, getUserGroupMembers);
 }
@@ -51,4 +65,11 @@ export function* watchAddMemberToUserGroup() {
 
 export function* watchRemoveMemberFromUserGroup() {
   yield takeEvery(types.REMOVE_GROUP_MEMBER_STARTED, removeMemberFromUserGroup);
+}
+
+export function* watchGetMutualGroupMembers() {
+  yield takeEvery(
+    types.GET_MUTUAL_GROUP_MEMBERS_STARTED,
+    getMutualGroupMembers
+  );
 }

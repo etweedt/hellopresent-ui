@@ -221,6 +221,24 @@ class HelloPresentApi {
         });
     });
   }
+
+  static getMutualGroupMembers(userEmail) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${config.helloPresentApiEndpoint}/groups/mutual/${userEmail}`)
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(err => {
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
+        });
+    });
+  }
 }
 
 export default HelloPresentApi;
+

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap';
 import MemberCard from './memberCard';
 import AddMembers from './addMembers';
+import MutualMembers from './mutualGroupMembers';
 
 const groupContent = ({
   groupMembers,
@@ -28,7 +29,16 @@ const groupContent = ({
               <NavLink
                 className={activeTab === 'members' ? 'active' : ''}
                 onClick={() => onSwitchTab('members')}>
-                Members
+                You've Added
+              </NavLink>
+            </NavItem>
+            <NavItem className="clickable">
+              <NavLink
+                className={activeTab === 'mutual' ? 'active' : ''}
+                onClick={() => {
+                  onSwitchTab('mutual');
+                }}>
+                Added You Back
               </NavLink>
             </NavItem>
             <NavItem className="clickable">
@@ -46,7 +56,9 @@ const groupContent = ({
                   <div className="row">
                     {groupMembers.map(member => {
                       return (
-                        <div key={member._id} className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div
+                          key={member._id}
+                          className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                           <MemberCard
                             member={member}
                             isAdd={false}
@@ -61,6 +73,13 @@ const groupContent = ({
                       </div>
                     )}
                   </div>
+                </div>
+              </div>
+            </TabPane>
+            <TabPane tabId="mutual">
+              <div className="row mt-4">
+                <div className="col-sm">
+                  <MutualMembers groupMembers={groupMembers} />
                 </div>
               </div>
             </TabPane>

@@ -7,5 +7,6 @@ export default {
   userInfo: {},
   groupMembers: [],
   allUsers: [],
-  searchResults: []
+  searchResults: [],
+  mutualGroupMembers: []
 };

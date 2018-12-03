@@ -24,6 +24,7 @@ export default function* root() {
     group.watchGetGroupMembers(),
     group.watchAddMemberToUserGroup(),
     group.watchRemoveMemberFromUserGroup(),
+    group.watchGetMutualGroupMembers(),
     users.watchGetGroupMembers(),
     search.watchSearchForMembers()
   ]);
