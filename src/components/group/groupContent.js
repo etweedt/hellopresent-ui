@@ -29,7 +29,7 @@ const groupContent = ({
               <NavLink
                 className={activeTab === 'members' ? 'active' : ''}
                 onClick={() => onSwitchTab('members')}>
-                You've Added
+                You Added
               </NavLink>
             </NavItem>
             <NavItem className="clickable">
@@ -45,7 +45,7 @@ const groupContent = ({
               <NavLink
                 className={activeTab === 'add' ? 'active' : ''}
                 onClick={() => onSwitchTab('add')}>
-                Add Members
+                Search
               </NavLink>
             </NavItem>
           </Nav>

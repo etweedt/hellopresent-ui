@@ -66,6 +66,11 @@ export class mutualGroupMembers extends React.Component {
             </div>
           );
         })}
+        {mutualGroupMembers.length === 0 && (
+          <div cassName="col-sm">
+            <p>No one has added you yet.</p>
+          </div>
+        )}
       </div>
     );
   }
