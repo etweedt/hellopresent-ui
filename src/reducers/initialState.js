@@ -8,5 +8,6 @@ export default {
   groupMembers: [],
   allUsers: [],
   searchResults: [],
-  mutualGroupMembers: []
+  mutualGroupMembers: [],
+  notifications: []
 };

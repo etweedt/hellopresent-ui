@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from './itemCard';
 
 const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
   return (
-    <section>
+    <Fragment>
       <div className="row mb-3">
         <div className="col-sm">
           <h1>
@@ -30,9 +30,7 @@ const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
           <div className="row">
             {wishlist.map((item, index) => {
               return (
-                <div
-                  key={index}
-                  className="col-xl-4 col-lg-6 col-md-12">
+                <div key={index} className="col-xl-4 col-lg-6 col-md-12">
                   <ItemCard
                     wishlistItem={item}
                     onEdit={onEdit}
@@ -44,7 +42,7 @@ const userWishlistContent = ({wishlist, onAdd, onEdit, onDelete}) => {
           </div>
         </div>
       </div>
-    </section>
+    </Fragment>
   );
 };
 

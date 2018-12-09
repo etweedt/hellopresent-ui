@@ -7,6 +7,7 @@ import * as userInfo from './userInfoSaga';
 import * as group from './groupSaga';
 import * as users from './usersSaga';
 import * as search from './searchSaga';
+import * as notifications from './notificationSaga';
 
 export default function* root() {
   yield all([
@@ -26,6 +27,8 @@ export default function* root() {
     group.watchRemoveMemberFromUserGroup(),
     group.watchGetMutualGroupMembers(),
     users.watchGetGroupMembers(),
-    search.watchSearchForMembers()
+    search.watchSearchForMembers(),
+    notifications.watchGetNotifications(),
+    notifications.watchMarkNotificationAsRead()
   ]);
 }

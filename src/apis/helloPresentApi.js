@@ -238,7 +238,46 @@ class HelloPresentApi {
         });
     });
   }
+
+  static getNotifications(userEmail) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${
+            config.helloPresentApiEndpoint
+          }/notifications/${userEmail}?unseenOnly=true`
+        )
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(err => {
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
+        });
+    });
+  }
+
+  static markNotificationAsRead(notificationId) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(
+          `${config.helloPresentApiEndpoint}/notifications/${notificationId}`
+        )
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(err => {
+          if (err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
+        });
+    });
+  }
 }
 
 export default HelloPresentApi;
-

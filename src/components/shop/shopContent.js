@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
 import ItemCard from '../common/itemCard';
@@ -25,7 +25,7 @@ const shopContent = ({
   };
 
   return (
-    <section>
+    <Fragment>
       <div className="row mb-3">
         <div className="col-sm">
           <h1>
@@ -92,7 +92,7 @@ const shopContent = ({
           </div>
         </div>
       )}
-    </section>
+    </Fragment>
   );
 };
 

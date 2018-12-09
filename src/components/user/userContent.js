@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form, FormGroup, Input, Label} from 'reactstrap';
 
 const userContent = ({userInfo, userInfoChanged, saveUserInfo}) => {
   return (
-    <section>
+    <Fragment>
       <div className="row mb-4">
         <div className="col-sm">
           <h1>
@@ -55,7 +55,7 @@ const userContent = ({userInfo, userInfoChanged, saveUserInfo}) => {
           </Button>
         </div>
       </div>
-    </section>
+    </Fragment>
   );
 };
 

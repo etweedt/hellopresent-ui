@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Loader from 'react-loader-spinner';
@@ -14,12 +14,12 @@ export class loader extends React.Component {
 
     if (loading > 0 || forceVisible) {
       return (
-        <section>
+        <Fragment>
           <div className="loader-page" />
           <div className="loader">
             <Loader type="Oval" color="#5bc0de" height={80} width={80} />
           </div>
-        </section>
+        </Fragment>
       );
     } else {
       return null;

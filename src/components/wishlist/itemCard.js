@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import PriceBadge from '../common/priceBadge';
 
 const itemCard = ({wishlistItem, onEdit, onDelete}) => {
   return (
-    <section>
+    <Fragment>
       <div className="card item-card mb-4">
         <div className="card-body">
           <h4 className="card-title">{wishlistItem.name}</h4>
@@ -40,7 +40,7 @@ const itemCard = ({wishlistItem, onEdit, onDelete}) => {
           )}
         </div>
       </div>
-    </section>
+    </Fragment>
   );
 };
 

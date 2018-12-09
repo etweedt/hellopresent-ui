@@ -9,6 +9,7 @@ import groupMembers from './groupMembersReducer';
 import allUsers from './allUsersReducer';
 import searchResults from './searchResultsReducer';
 import mutualGroupMembers from './mutualGroupMembersReducer';
+import notifications from './notificationReducer';
 
 export default combineReducers({
   loading,
@@ -20,5 +21,6 @@ export default combineReducers({
   groupMembers,
   allUsers,
   searchResults,
-  mutualGroupMembers
+  mutualGroupMembers,
+  notifications
 });
