@@ -19,15 +19,20 @@ const notificationsContent = ({notifications, onMarkSeen}) => {
               <Alert color="info" toggle={() => onMarkSeen(notification)}>
                 <div className="d-flex justify-content-between align-items-center">
                   <span>{notification.message}</span>
-                  <span>
-                    {new Date(notification.date).toLocaleString()}
-                  </span>
+                  <span>{new Date(notification.date).toLocaleString()}</span>
                 </div>
               </Alert>
             </div>
           </div>
         );
       })}
+      {notifications.length === 0 && (
+        <div className="row">
+          <div className="col-sm">
+            <p>You have no new notifications!</p>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };
