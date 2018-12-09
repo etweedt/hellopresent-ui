@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Badge from './priceBadgeSelector';
 
 const priceBadgeContainer = ({name, value, onChange}) => {
   const arr = [1, 2, 3, 4, 5, 6, 7];
   return (
-    <section>
+    <Fragment>
       <div>
         {arr.map(i => {
           return (
@@ -19,7 +19,7 @@ const priceBadgeContainer = ({name, value, onChange}) => {
           );
         })}
       </div>
-    </section>
+    </Fragment>
   );
 };
 

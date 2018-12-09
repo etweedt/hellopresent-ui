@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from '../common/itemCard';
 import getSnark from './randomSnarkyMessage';
 
 const claimedContent = ({claims, userName, onClaimChanged}) => {
   return (
-    <section>
+    <Fragment>
       <div className="row mb-3">
         <div className="col-sm">
           <h1>
@@ -35,7 +35,9 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
                     <div className="row">
                       {claim.items.map((item, iIdx) => {
                         return (
-                          <div key={iIdx} className="col-xl-4 col-lg-6 col-md-12">
+                          <div
+                            key={iIdx}
+                            className="col-xl-4 col-lg-6 col-md-12">
                             <ItemCard
                               item={item}
                               listOwner={claim.email}
@@ -62,7 +64,7 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
           </div>
         </div>
       )}
-    </section>
+    </Fragment>
   );
 };
 

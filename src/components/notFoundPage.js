@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {NavLink as Link, withRouter} from 'react-router-dom';
 
 const NotFoundPage = () => {
   return (
-    <section>
+    <Fragment>
       <div className="row">
         <br />
         <br />
@@ -18,7 +18,7 @@ const NotFoundPage = () => {
         </div>
         <div className="col-sm" />
       </div>
-    </section>
+    </Fragment>
   );
 };
 

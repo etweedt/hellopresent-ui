@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Form, FormGroup, Input} from 'reactstrap';
@@ -83,7 +83,7 @@ export class addMembers extends React.Component {
     const {searchString, noResultsMessage} = this.state;
 
     return (
-      <section>
+      <Fragment>
         <div className="row">
           <div className="col-sm">
             <Form
@@ -135,7 +135,7 @@ export class addMembers extends React.Component {
             </div>
           </div>
         </div>
-      </section>
+      </Fragment>
     );
   }
 }

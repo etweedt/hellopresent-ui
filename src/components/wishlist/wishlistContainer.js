@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './wishlistContent';
@@ -135,7 +135,7 @@ export class userWishlistContainer extends React.Component {
       showDeleteModal: false,
       toDelete: {}
     });
-  }
+  };
 
   onDelete = () => {
     const {auth, wishlist, removeItem} = this.props;
@@ -154,7 +154,7 @@ export class userWishlistContainer extends React.Component {
     const {showModal, addMode, toEdit, showDeleteModal, toDelete} = this.state;
 
     return (
-      <section>
+      <Fragment>
         <Content
           wishlist={wishlist}
           onAdd={this.addItem}
@@ -175,7 +175,7 @@ export class userWishlistContainer extends React.Component {
           onConfirm={this.onDelete}
           onCancel={this.cancelDeleteModal}
         />
-      </section>
+      </Fragment>
     );
   }
 }

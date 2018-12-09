@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap';
 import MemberCard from './memberCard';
@@ -14,7 +14,7 @@ const groupContent = ({
   onRemoveMember
 }) => {
   return (
-    <section>
+    <Fragment>
       <div className="row mb-4">
         <div className="col-sm">
           <h1>
@@ -98,7 +98,7 @@ const groupContent = ({
           </TabContent>
         </div>
       </div>
-    </section>
+    </Fragment>
   );
 };
 

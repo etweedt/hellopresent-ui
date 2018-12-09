@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PriceBadge from './priceBadge';
 import {Button} from 'reactstrap';
 
-const itemCard = ({item, listOwner, userName, onClaimChanged}) => {
+const itemCard = ({item, userName, onClaimChanged}) => {
   const getClaimedColor = () => {
     if (item.claimedBy) {
       if (item.claimedBy === userName) {
@@ -62,7 +62,6 @@ const itemCard = ({item, listOwner, userName, onClaimChanged}) => {
 
 itemCard.propTypes = {
   item: PropTypes.object.isRequired,
-  listOwner: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   onClaimChanged: PropTypes.func.isRequired
 };

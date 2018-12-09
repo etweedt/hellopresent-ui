@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './groupContent';
@@ -86,7 +86,7 @@ export class groupContainer extends React.Component {
     const {activeTab, showConfirmModal} = this.state;
 
     return (
-      <section>
+      <Fragment>
         <Content
           groupMembers={groupMembers}
           mutualGroupMembers={mutualGroupMembers}
@@ -100,7 +100,7 @@ export class groupContainer extends React.Component {
           closeModal={this.onCancelRemove}
           confirmModal={this.onConfirmRemoveMember}
         />
-      </section>
+      </Fragment>
     );
   }
 }

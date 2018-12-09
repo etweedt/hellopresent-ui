@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Link, withRouter} from 'react-router-dom';
 import {Alert, Button} from 'reactstrap';
@@ -17,7 +17,7 @@ const homeContent = ({auth, profile, groupMembers, wishlist, claims}) => {
 
   if (auth.email) {
     return (
-      <section>
+      <Fragment>
         <div className="row">
           <div className="col-sm">
             <h1>
@@ -110,11 +110,11 @@ const homeContent = ({auth, profile, groupMembers, wishlist, claims}) => {
             </div>
           </div>
         </div>
-      </section>
+      </Fragment>
     );
   } else {
     return (
-      <section>
+      <Fragment>
         <div className="row">
           <div className="col-sm">
             <h1>
@@ -129,7 +129,7 @@ const homeContent = ({auth, profile, groupMembers, wishlist, claims}) => {
             </div>
           </div>
         </div>
-      </section>
+      </Fragment>
     );
   }
 };

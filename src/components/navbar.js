@@ -8,16 +8,20 @@ import {
   NavItem,
   NavLink,
   NavbarBrand,
-  NavbarToggler
+  NavbarToggler,
+  Badge
 } from 'reactstrap';
 import {NavLink as Link, withRouter} from 'react-router-dom';
 import * as authActions from '../actions/authActions';
+import * as notificationActions from '../actions/notificationActions';
 
 export class navbarContainer extends React.Component {
   static propTypes = {
     getUserInfo: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    authInfo: PropTypes.object
+    authInfo: PropTypes.object,
+    notifications: PropTypes.array.isRequired,
+    getNotifications: PropTypes.func.isRequired
   };
 
   state = {
@@ -25,10 +29,25 @@ export class navbarContainer extends React.Component {
   };
 
   componentWillMount() {
-    const {auth, getUserInfo} = this.props;
+    const {auth, authInfo, getUserInfo, getNotifications} = this.props;
 
     if (auth.isAuthenticated()) {
       getUserInfo();
+    }
+
+    if (authInfo.email) {
+      getNotifications(authInfo.email);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {authInfo, getNotifications} = this.props;
+
+    if (
+      nextProps.authInfo.email &&
+      nextProps.authInfo.email !== authInfo.email
+    ) {
+      getNotifications(nextProps.authInfo.email);
     }
   }
 
@@ -45,7 +64,7 @@ export class navbarContainer extends React.Component {
   };
 
   render() {
-    const {auth, authInfo} = this.props;
+    const {auth, authInfo, notifications} = this.props;
     const {navbarIsOpen} = this.state;
 
     return (
@@ -80,6 +99,17 @@ export class navbarContainer extends React.Component {
               <NavItem>
                 <NavLink tag={Link} to="/profile" onClick={this.navbarClose}>
                   Profile
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={Link}
+                  to="/notifications"
+                  onClick={this.navbarClose}>
+                  Notifications{' '}
+                  {notifications.length > 0 && (
+                    <Badge color="danger">{notifications.length}</Badge>
+                  )}
                 </NavLink>
               </NavItem>
             </Nav>
@@ -125,7 +155,8 @@ export class navbarContainer extends React.Component {
 
 export const mapStateToProps = state => {
   return {
-    authInfo: state.auth
+    authInfo: state.auth,
+    notifications: state.notifications
   };
 };
 
@@ -133,6 +164,9 @@ export const mapDispatchToProps = dispatch => {
   return {
     getUserInfo: () => {
       dispatch(authActions.retrieveAuthProfile());
+    },
+    getNotifications: userId => {
+      dispatch(notificationActions.getNotifications(userId));
     }
   };
 };

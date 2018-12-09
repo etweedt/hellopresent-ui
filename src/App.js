@@ -7,6 +7,7 @@ import Group from './components/group/groupContainer';
 import Shop from './components/shop/shopContainer';
 import Claims from './components/claims/claimsContainer';
 import Profile from './components/user/userContainer';
+import Notifications from './components/notifications/notificationsContainer';
 import toastr from 'toastr';
 import Auth from './auth/auth';
 import NotFound from './components/notFoundPage';
@@ -40,6 +41,7 @@ class App extends Component {
             <Route exact path="/shop" component={Shop} />
             <Route exact path="/claims" component={Claims} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/notifications" component={Notifications} />
             <Route
               path="/callback"
               render={props => {
