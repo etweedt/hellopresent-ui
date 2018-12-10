@@ -8,7 +8,7 @@ const userContent = ({userInfo, userInfoChanged, saveUserInfo}) => {
       <div className="row mb-4">
         <div className="col-sm">
           <h1>
-            <i className="fa fa-user" /> Your profile
+            <i className="fa fa-user" /> My profile
           </h1>
           <p>Details about yourself so other people can shop for you</p>
         </div>

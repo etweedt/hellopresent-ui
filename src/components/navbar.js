@@ -82,11 +82,6 @@ export class navbarContainer extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/group" onClick={this.navbarClose}>
-                  My Group
-                </NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink tag={Link} to="/shop" onClick={this.navbarClose}>
                   Shop
                 </NavLink>
@@ -97,8 +92,13 @@ export class navbarContainer extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink tag={Link} to="/group" onClick={this.navbarClose}>
+                  My Group
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/profile" onClick={this.navbarClose}>
-                  Profile
+                  My Profile
                 </NavLink>
               </NavItem>
               <NavItem>
