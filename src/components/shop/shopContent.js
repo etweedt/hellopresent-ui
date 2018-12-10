@@ -63,7 +63,7 @@ const shopContent = ({
             <div className="row">
               {wishlist.items.map(item => {
                 return (
-                  <div key={item._id} className="col-xl-4 col-lg-6 col-md-12">
+                  <div key={item.id} className="col-xl-4 col-lg-6 col-md-12">
                     <ItemCard
                       listOwner={wishlist.email}
                       item={item}
