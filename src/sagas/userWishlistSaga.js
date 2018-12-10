@@ -69,9 +69,9 @@ export function* editUserWishlistItem(action) {
       items: action.payload.wishlist
     };
     const found = wishlist.items.find(i => {
-      return i._id === item._id;
+      return i.id === item.id;
     });
-
+    
     found.name = item.name;
     found.description = item.description;
     found.url = item.url;
