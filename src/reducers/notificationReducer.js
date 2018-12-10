@@ -9,7 +9,18 @@ export default function update(state = initialState.notifications, action) {
 
   switch (action.type) {
     case types.GET_NOTIFICATIONS_COMPLETED:
-      return clone(action.payload.notifications);
+      cloned = action.payload.notifications;
+      cloned.sort((a, b) => {
+        if (a.date > b.date) {
+          return -1;
+        } else if (b.date > a.date) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+      return cloned;
 
     case types.MARK_NOTIFICATION_AS_READ_COMPLETED:
       cloned = clone(state);

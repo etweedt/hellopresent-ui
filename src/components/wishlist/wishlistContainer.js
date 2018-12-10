@@ -141,7 +141,7 @@ export class userWishlistContainer extends React.Component {
     const {auth, wishlist, removeItem} = this.props;
     const {toDelete} = this.state;
 
-    removeItem(auth.email, wishlist, toDelete._id);
+    removeItem(auth.email, wishlist, toDelete);
 
     this.setState({
       showDeleteModal: false,
@@ -195,8 +195,8 @@ export const mapDispatchToProps = dispatch => {
     addItem: (email, wishlist, item) => {
       dispatch(addItemToUserWishlist(email, wishlist, item));
     },
-    removeItem: (email, wishlist, itemId) => {
-      dispatch(deleteItemFromUserWishlist(email, wishlist, itemId));
+    removeItem: (email, wishlist, item) => {
+      dispatch(deleteItemFromUserWishlist(email, wishlist, item));
     },
     editItem: (email, wishlist, item) => {
       dispatch(updateUserWishlistItem(email, wishlist, item));

@@ -72,11 +72,12 @@ class HelloPresentApi {
     });
   }
 
-  static updateUsersWishlist(email, wishlist) {
+  static updateUsersWishlist(email, wishlist, message) {
     return new Promise((resolve, reject) => {
       axios
         .post(`${config.helloPresentApiEndpoint}/wishlists/user/${email}`, {
-          wishlist
+          wishlist,
+          message
         })
         .then(response => {
           resolve(response.data.wishlist);

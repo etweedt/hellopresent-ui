@@ -14,6 +14,7 @@ export function* getUserWishlist(action) {
 
 export function* addItemToUserWishlist(action) {
   try {
+    const message = `added ${action.payload.item.name} to their wishlist.`;
     const wishlist = {
       email: action.payload.email,
       items: action.payload.wishlist
@@ -24,7 +25,8 @@ export function* addItemToUserWishlist(action) {
     const updatedWishlist = yield call(
       Api.updateUsersWishlist,
       action.payload.email,
-      wishlist
+      wishlist,
+      message
     );
     yield put(actions.addItemToUserWishlistComplete(updatedWishlist.items));
   } catch (e) {
@@ -34,19 +36,21 @@ export function* addItemToUserWishlist(action) {
 
 export function* removeItemFromUserWishlist(action) {
   try {
+    const message = `removed ${action.payload.item.name} from their wishlist.`;
     const wishlist = {
       email: action.payload.email,
       items: action.payload.wishlist
     };
     const found = wishlist.items.find(item => {
-      return item._id === action.payload.itemId;
+      return item.id === action.payload.item.id;
     });
     wishlist.items.splice(wishlist.items.indexOf(found), 1);
 
     const updatedWishlist = yield call(
       Api.updateUsersWishlist,
       wishlist.email,
-      wishlist
+      wishlist,
+      message
     );
     yield put(
       actions.deleteItemFromUserWishlistComplete(updatedWishlist.items)
@@ -58,6 +62,7 @@ export function* removeItemFromUserWishlist(action) {
 
 export function* editUserWishlistItem(action) {
   try {
+    const message = `updated ${action.payload.item.name} in their wishlist.`;
     const {item} = action.payload;
     const wishlist = {
       email: action.payload.email,
@@ -77,7 +82,8 @@ export function* editUserWishlistItem(action) {
     const updatedWishlist = yield call(
       Api.updateUsersWishlist,
       wishlist.email,
-      wishlist
+      wishlist,
+      message
     );
 
     yield put(actions.updateUserWishlistItemComplete(updatedWishlist.items));

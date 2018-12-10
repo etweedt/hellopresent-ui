@@ -62,13 +62,13 @@ export function addItemToUserWishlistError(error) {
   };
 }
 
-export function deleteItemFromUserWishlist(email, wishlist, itemId) {
+export function deleteItemFromUserWishlist(email, wishlist, item) {
   return {
     type: types.DELETE_USER_WISHLIST_ITEM_STARTED,
     payload: {
       email,
       wishlist,
-      itemId
+      item
     }
   };
 }
