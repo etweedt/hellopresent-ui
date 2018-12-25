@@ -9,7 +9,8 @@ const shopContent = ({
   selectedChanged,
   groupMembers,
   wishlist,
-  onClaimChanged
+  onClaimChanged,
+  onViewClaim
 }) => {
   const getName = member => {
     let retVal = member.firstName;
@@ -69,6 +70,7 @@ const shopContent = ({
                       item={item}
                       userName={auth.email}
                       onClaimChanged={onClaimChanged}
+                      onViewClaim={onViewClaim}
                     />
                   </div>
                 );
@@ -102,7 +104,8 @@ shopContent.propTypes = {
   selectedChanged: PropTypes.func.isRequired,
   groupMembers: PropTypes.array.isRequired,
   wishlist: PropTypes.object.isRequired,
-  onClaimChanged: PropTypes.func.isRequired
+  onClaimChanged: PropTypes.func.isRequired,
+  onViewClaim: PropTypes.func.isRequired
 };
 
 export default shopContent;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PriceBadge from './priceBadge';
 import {Button} from 'reactstrap';
 
-const itemCard = ({item, userName, onClaimChanged}) => {
+const itemCard = ({item, userName, onClaimChanged, onViewClaim}) => {
   const getClaimedColor = () => {
     if (item.claimedBy) {
       if (item.claimedBy === userName) {
@@ -48,6 +48,15 @@ const itemCard = ({item, userName, onClaimChanged}) => {
             }>
             {getClaimedText()}
           </Button>
+          {item.claimedBy && (
+            <Button
+              className="ml-2"
+              color="secondary"
+              outline
+              onClick={() => onViewClaim(item.claimedBy)}>
+              <i className="fa fa-info" />
+            </Button>
+          )}
           {item.url && <span>&nbsp;&nbsp;</span>}
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer">
@@ -63,7 +72,8 @@ const itemCard = ({item, userName, onClaimChanged}) => {
 itemCard.propTypes = {
   item: PropTypes.object.isRequired,
   userName: PropTypes.string.isRequired,
-  onClaimChanged: PropTypes.func.isRequired
+  onClaimChanged: PropTypes.func.isRequired,
+  onViewClaim: PropTypes.func.isRequired
 };
 
 export default itemCard;

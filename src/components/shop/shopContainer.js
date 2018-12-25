@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Content from './shopContent';
 import * as groupActions from '../../actions/groupActions';
 import * as shoppingWishlistActions from '../../actions/shoppingWishlistActions';
+import ClaimedModal from '../modals/claimedByModal';
 
 export class browseContainer extends React.Component {
   static propTypes = {
@@ -19,7 +20,9 @@ export class browseContainer extends React.Component {
   };
 
   state = {
-    selectedUser: ''
+    selectedUser: '',
+    showClaimedByModal: false,
+    claimedBy: ''
   };
 
   componentWillMount() {
@@ -62,19 +65,41 @@ export class browseContainer extends React.Component {
     }
   };
 
+  onViewClaim = claimedBy => {
+    this.setState({
+      showClaimedByModal: true,
+      claimedBy
+    });
+  };
+
+  closeViewCLaim = () => {
+    this.setState({
+      showClaimedByModal: false,
+      claimedBy: ''
+    });
+  };
+
   render() {
     const {auth, groupMembers, wishlist} = this.props;
-    const {selectedUser} = this.state;
+    const {selectedUser, showClaimedByModal, claimedBy} = this.state;
 
     return (
-      <Content
-        auth={auth}
-        selected={selectedUser}
-        selectedChanged={this.selectedChanged}
-        groupMembers={groupMembers}
-        wishlist={wishlist}
-        onClaimChanged={this.onClaimChanged}
-      />
+      <>
+        <Content
+          auth={auth}
+          selected={selectedUser}
+          selectedChanged={this.selectedChanged}
+          groupMembers={groupMembers}
+          wishlist={wishlist}
+          onClaimChanged={this.onClaimChanged}
+          onViewClaim={this.onViewClaim}
+        />
+        <ClaimedModal
+          isOpen={showClaimedByModal}
+          closeModal={this.closeViewCLaim}
+          claimedBy={claimedBy}
+        />
+      </>
     );
   }
 }
