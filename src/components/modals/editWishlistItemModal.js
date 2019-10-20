@@ -7,6 +7,7 @@ import {
   ModalFooter,
   Form,
   FormGroup,
+  FormFeedback,
   Label,
   Input,
   FormText
@@ -21,6 +22,14 @@ const editWishlistItemModal = ({
   onSave,
   onCancel
 }) => {
+  function validateUrl() {
+    if (wishlistItem.url.length > 0) {
+      return /^(?:http(s)?:\/\/)?[\w.-]+(?:.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/gm.test(wishlistItem.url);
+    } else {
+      return true;
+    }
+  }
+
   return (
     <Modal isOpen={show}>
       <ModalHeader>{addMode ? 'Add Item' : 'Edit Item'}</ModalHeader>
@@ -31,7 +40,6 @@ const editWishlistItemModal = ({
             <Input
               type="text"
               name="name"
-              valid={wishlistItem.name.length >= 2}
               placeholder="Item name"
               value={wishlistItem.name}
               onChange={onChange}
@@ -45,7 +53,11 @@ const editWishlistItemModal = ({
               placeholder="URL to product"
               value={wishlistItem.url}
               onChange={onChange}
+              invalid={!validateUrl()}
             />
+            <FormFeedback>
+              You are using an invalid URL!
+            </FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label for="description">Description</Label>

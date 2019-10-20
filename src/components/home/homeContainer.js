@@ -58,7 +58,7 @@ export class homeContainer extends React.Component {
     }
   }
 
-  componentWillunmount() {
+  componentWillUnmount() {
     const {
       clearUserInfo,
       clearGroupMembers,
