@@ -12,9 +12,9 @@ import toastr from 'toastr';
 import Auth from './auth/auth';
 import NotFound from './components/notFoundPage';
 import Loader from './components/common/loader';
-import 'toastr/toastr.scss';
 import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
+import 'toastr/toastr.scss';
 
 toastr.options.positionClass = 'toast-bottom-right';
 
