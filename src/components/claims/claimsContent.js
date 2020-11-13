@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 import ItemCard from '../common/itemCard';
 import getSnark from './randomSnarkyMessage';
 
-const claimedContent = ({claims, userName, onClaimChanged}) => {
+const claimedContent = ({claims, userName, onClaimChanged, onViewClaim}) => {
   return (
     <Fragment>
-      <div className="row mb-3">
-        <div className="col-sm">
+      <div className='row mb-3'>
+        <div className='col-sm'>
           <h1>
-            <i className="fa fa-tags" /> Claims
+            <i className='fa fa-tags' /> Claims
           </h1>
           <p>Items you have claimed to purchase for others</p>
         </div>
       </div>
       {claims.length > 0 && (
-        <div className="row">
-          <div className="col-sm">
+        <div className='row'>
+          <div className='col-sm'>
             {claims.map((claim, index) => {
               return (
-                <div key={index} className="row">
-                  <div className="col-sm">
-                    <div className="row">
-                      <div className="col-sm">
+                <div key={index} className='row'>
+                  <div className='col-sm'>
+                    <div className='row'>
+                      <div className='col-sm'>
                         <h6>
                           For{' '}
                           {claim.lastName
@@ -32,12 +32,12 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
                         {claim.address && <pre>{claim.address}</pre>}
                       </div>
                     </div>
-                    <div className="row">
+                    <div className='row'>
                       {claim.items.map(item => {
                         return (
                           <div
                             key={item.id}
-                            className="col-xl-4 col-lg-6 col-md-12">
+                            className='col-xl-4 col-lg-6 col-md-12'>
                             <ItemCard
                               item={item}
                               listOwner={claim.email}
@@ -45,6 +45,7 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
                               onClaimChanged={item =>
                                 onClaimChanged(item, claim)
                               }
+                              onViewClaim={onViewClaim}
                             />
                           </div>
                         );
@@ -58,8 +59,8 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
         </div>
       )}
       {claims.length === 0 && (
-        <div className="row">
-          <div className="col-sm">
+        <div className='row'>
+          <div className='col-sm'>
             <p>{getSnark()}</p>
           </div>
         </div>
@@ -71,7 +72,8 @@ const claimedContent = ({claims, userName, onClaimChanged}) => {
 claimedContent.propTypes = {
   claims: PropTypes.array.isRequired,
   userName: PropTypes.string.isRequired,
-  onClaimChanged: PropTypes.func.isRequired
+  onClaimChanged: PropTypes.func.isRequired,
+  onViewClaim: PropTypes.func.isRequired,
 };
 
 export default claimedContent;

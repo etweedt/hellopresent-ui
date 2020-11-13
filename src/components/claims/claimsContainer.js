@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Content from './claimsContent';
+import ClaimedModal from '../modals/claimedByModal';
 import * as claimActions from '../../actions/claimActions';
 import * as wishlistActions from '../../actions/shoppingWishlistActions';
 
@@ -11,7 +12,12 @@ export class claimedContainer extends React.Component {
     claims: PropTypes.array.isRequired,
     getClaims: PropTypes.func.isRequired,
     clearClaims: PropTypes.func.isRequired,
-    unclaimItem: PropTypes.func.isRequired
+    unclaimItem: PropTypes.func.isRequired,
+  };
+
+  state = {
+    showClaimedByModal: false,
+    claimedBy: '',
   };
 
   componentWillMount() {
@@ -40,15 +46,38 @@ export class claimedContainer extends React.Component {
     unclaimItem(auth.email, wishlist.id, item.id, true);
   };
 
+  onViewClaim = claimedBy => {
+    this.setState({
+      showClaimedByModal: true,
+      claimedBy,
+    });
+  };
+
+  closeViewCLaim = () => {
+    this.setState({
+      showClaimedByModal: false,
+      claimedBy: '',
+    });
+  };
+
   render() {
     const {auth, claims} = this.props;
+    const {showClaimedByModal, claimedBy} = this.state;
 
     return (
-      <Content
-        claims={claims}
-        userName={auth.email ? auth.email : ''}
-        onClaimChanged={this.onClaimChanged}
-      />
+      <>
+        <Content
+          claims={claims}
+          userName={auth.email ? auth.email : ''}
+          onClaimChanged={this.onClaimChanged}
+          onViewClaim={this.onViewClaim}
+        />
+        <ClaimedModal
+          isOpen={showClaimedByModal}
+          closeModal={this.closeViewCLaim}
+          claimedBy={claimedBy}
+        />
+      </>
     );
   }
 }
@@ -56,7 +85,7 @@ export class claimedContainer extends React.Component {
 export const mapStateToProps = state => {
   return {
     auth: state.auth,
-    claims: state.claims
+    claims: state.claims,
   };
 };
 
@@ -72,11 +101,8 @@ export const mapDispatchToProps = dispatch => {
       dispatch(
         wishlistActions.unclaimWishlistItem(email, wishlistId, itemId, true)
       );
-    }
+    },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(claimedContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(claimedContainer);
