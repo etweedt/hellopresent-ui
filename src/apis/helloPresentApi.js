@@ -92,13 +92,13 @@ class HelloPresentApi {
     });
   }
 
-  static claimItem(email, wishlistId, itemId) {
+  static claimItem(email, wishlistId, item) {
     return new Promise((resolve, reject) => {
       axios
         .post(`${config.helloPresentApiEndpoint}/wishlists/items/claim`, {
           userId: email,
           wishlistId,
-          itemId
+          item
         })
         .then(response => {
           resolve(response.data.wishlist);
@@ -113,13 +113,13 @@ class HelloPresentApi {
     });
   }
 
-  static unclaimItem(email, wishlistId, itemId) {
+  static unclaimItem(email, wishlistId, item) {
     return new Promise((resolve, reject) => {
       axios
         .post(`${config.helloPresentApiEndpoint}/wishlists/items/unclaim`, {
           userId: email,
           wishlistId,
-          itemId
+          item
         })
         .then(response => {
           resolve(response.data.wishlist);

@@ -19,7 +19,7 @@ export function* claimItem(action) {
       Api.claimItem,
       action.payload.email,
       action.payload.wishlistId,
-      action.payload.itemId
+      action.payload.item
     );
     yield put(actions.claimWishlistItemComplete(wishlist));
   } catch (e) {
@@ -33,7 +33,7 @@ export function* unclaimItem(action) {
       Api.unclaimItem,
       action.payload.email,
       action.payload.wishlistId,
-      action.payload.itemId
+      action.payload.item
     );
 
     if (action.payload.claimsPage) {

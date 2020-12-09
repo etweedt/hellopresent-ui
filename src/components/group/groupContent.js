@@ -58,7 +58,7 @@ const groupContent = ({
                     {groupMembers.map(member => {
                       return (
                         <div
-                          key={member._id}
+                          key={member.email}
                           className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                           <MemberCard
                             member={member}

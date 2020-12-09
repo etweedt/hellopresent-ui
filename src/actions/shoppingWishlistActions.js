@@ -33,13 +33,13 @@ export function clearShoppingWishlist() {
   };
 }
 
-export function claimWishlistItem(email, wishlistId, itemId) {
+export function claimWishlistItem(email, wishlistId, item) {
   return {
     type: types.CLAIM_ITEM_STARTED,
     payload: {
       email,
       wishlistId,
-      itemId
+      item
     }
   };
 }
@@ -62,13 +62,13 @@ export function claimWishlistItemError(error) {
   };
 }
 
-export function unclaimWishlistItem(email, wishlistId, itemId, claimsPage) {
+export function unclaimWishlistItem(email, wishlistId, item, claimsPage) {
   return {
     type: types.UNCLAIM_ITEM_STARTED,
     payload: {
       email,
       wishlistId,
-      itemId,
+      item,
       claimsPage
     }
   };

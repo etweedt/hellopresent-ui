@@ -93,6 +93,12 @@ export class userWishlistContainer extends React.Component {
     const {addItem, wishlist, editItem, auth} = this.props;
     const toSave = clone(this.state.toEdit);
 
+    if (toSave.url.length > 0) {
+      if (!toSave.url.startsWith('http')) {
+        toSave.url = `http://${toSave.url}`;
+      }
+    }
+
     if (this.state.addMode) {
       addItem(auth.email, wishlist, toSave);
     } else {

@@ -43,7 +43,7 @@ export class claimedContainer extends React.Component {
   onClaimChanged = (item, wishlist) => {
     const {auth, unclaimItem} = this.props;
 
-    unclaimItem(auth.email, wishlist.id, item.id, true);
+    unclaimItem(auth.email, wishlist.email, item, true);
   };
 
   onViewClaim = claimedBy => {
@@ -97,9 +97,9 @@ export const mapDispatchToProps = dispatch => {
     clearClaims: () => {
       dispatch(claimActions.clearClaims());
     },
-    unclaimItem: (email, wishlistId, itemId) => {
+    unclaimItem: (email, wishlistId, item) => {
       dispatch(
-        wishlistActions.unclaimWishlistItem(email, wishlistId, itemId, true)
+        wishlistActions.unclaimWishlistItem(email, wishlistId, item, true)
       );
     },
   };

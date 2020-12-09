@@ -33,10 +33,10 @@ const claimedContent = ({claims, userName, onClaimChanged, onViewClaim}) => {
                       </div>
                     </div>
                     <div className='row'>
-                      {claim.items.map(item => {
+                      {claim.items.map((item, idx) => {
                         return (
                           <div
-                            key={item.id}
+                            key={item.name + idx}
                             className='col-xl-4 col-lg-6 col-md-12'>
                             <ItemCard
                               item={item}

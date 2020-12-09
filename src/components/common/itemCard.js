@@ -28,6 +28,7 @@ const itemCard = ({item, userName, onClaimChanged, onViewClaim}) => {
     }
   };
 
+  debugger;
   return (
     <section>
       <div className='card item-card mb-4'>
@@ -73,7 +74,7 @@ itemCard.propTypes = {
   item: PropTypes.object.isRequired,
   userName: PropTypes.string.isRequired,
   onClaimChanged: PropTypes.func.isRequired,
-  onViewClaim: PropTypes.func.isRequired,
+  onViewClaim: PropTypes.func.isRequired
 };
 
 export default itemCard;

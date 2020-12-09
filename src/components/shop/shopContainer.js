@@ -59,9 +59,9 @@ export class browseContainer extends React.Component {
     const {auth, wishlist, claimItem, unclaimItem} = this.props;
 
     if (item.claimedBy === auth.email) {
-      unclaimItem(auth.email, wishlist.id, item.id);
+      unclaimItem(auth.email, wishlist.email, item);
     } else {
-      claimItem(auth.email, wishlist.id, item.id);
+      claimItem(auth.email, wishlist.email, item);
     }
   };
 
@@ -135,14 +135,14 @@ export const mapDispatchToProps = dispatch => {
     clearShoppingWishlist: () => {
       dispatch(shoppingWishlistActions.clearShoppingWishlist());
     },
-    claimItem: (email, wishlistId, itemId) => {
+    claimItem: (email, wishlistId, item) => {
       dispatch(
-        shoppingWishlistActions.claimWishlistItem(email, wishlistId, itemId)
+        shoppingWishlistActions.claimWishlistItem(email, wishlistId, item)
       );
     },
-    unclaimItem: (email, wishlistId, itemId) => {
+    unclaimItem: (email, wishlistId, item) => {
       dispatch(
-        shoppingWishlistActions.unclaimWishlistItem(email, wishlistId, itemId)
+        shoppingWishlistActions.unclaimWishlistItem(email, wishlistId, item)
       );
     }
   };
