@@ -19,16 +19,23 @@ export function* addItemToUserWishlist(action) {
       email: action.payload.email,
       items: action.payload.wishlist
     };
+    const found = wishlist.items.find(item => {
+      return item.name === action.payload.item.name;
+    });
 
-    wishlist.items.push(action.payload.item);
+    if (found) {
+      throw new Error('Cannot add duplicate item');
+    } else {
+      wishlist.items.push(action.payload.item);
 
-    const updatedWishlist = yield call(
-      Api.updateUsersWishlist,
-      action.payload.email,
-      wishlist,
-      message
-    );
-    yield put(actions.addItemToUserWishlistComplete(updatedWishlist.items));
+      const updatedWishlist = yield call(
+        Api.updateUsersWishlist,
+        action.payload.email,
+        wishlist,
+        message
+      );
+      yield put(actions.addItemToUserWishlistComplete(updatedWishlist.items));
+    }
   } catch (e) {
     yield put(actions.addItemToUserWishlistError(e));
   }
@@ -42,7 +49,7 @@ export function* removeItemFromUserWishlist(action) {
       items: action.payload.wishlist
     };
     const found = wishlist.items.find(item => {
-      return item.id === action.payload.item.id;
+      return item.name === action.payload.item.name;
     });
     wishlist.items.splice(wishlist.items.indexOf(found), 1);
 
@@ -69,7 +76,7 @@ export function* editUserWishlistItem(action) {
       items: action.payload.wishlist
     };
     const found = wishlist.items.find(i => {
-      return i.id === item.id;
+      return i.name === item.name;
     });
     
     found.name = item.name;

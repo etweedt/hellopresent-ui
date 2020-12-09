@@ -43,6 +43,7 @@ const editWishlistItemModal = ({
               placeholder="Item name"
               value={wishlistItem.name}
               onChange={onChange}
+              readOnly={!addMode}
             />
           </FormGroup>
           <FormGroup>

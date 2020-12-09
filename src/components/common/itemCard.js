@@ -28,7 +28,6 @@ const itemCard = ({item, userName, onClaimChanged, onViewClaim}) => {
     }
   };
 
-  debugger;
   return (
     <section>
       <div className='card item-card mb-4'>
