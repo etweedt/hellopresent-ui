@@ -249,7 +249,7 @@ class HelloPresentApi {
           }/notifications/${userEmail}?unseenOnly=true`
         )
         .then(response => {
-          resolve(response.data);
+          resolve(response.data.notifications);
         })
         .catch(err => {
           if (err.response && err.response.data) {

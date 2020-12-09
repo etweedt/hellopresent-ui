@@ -10,7 +10,7 @@ export function* getNotifications(action) {
       action.payload.userEmail
     );
     yield put(
-      notificationActions.getNotificationsCompleted(notifications.notifications)
+      notificationActions.getNotificationsCompleted(notifications)
     );
   } catch (e) {
     yield put(notificationActions.getNotificationsError(e));

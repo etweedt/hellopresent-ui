@@ -10,7 +10,7 @@ const shopContent = ({
   groupMembers,
   wishlist,
   onClaimChanged,
-  onViewClaim
+  onViewClaim,
 }) => {
   const getName = member => {
     let retVal = member.firstName;
@@ -27,25 +27,25 @@ const shopContent = ({
 
   return (
     <Fragment>
-      <div className="row mb-3">
-        <div className="col-sm">
+      <div className='row mb-3'>
+        <div className='col-sm'>
           <h1>
-            <i className="fa fa-gift" /> Shop
+            <i className='fa fa-gift' /> Shop
           </h1>
           <p>View items for people you have added to your group</p>
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-4 col-md-6 col-sm-8">
+      <div className='row'>
+        <div className='col-lg-4 col-md-6 col-sm-8'>
           <Form>
             <FormGroup>
               <Label>Who are you shopping for?</Label>
               <Input
-                type="select"
-                name="select"
+                type='select'
+                name='select'
                 onChange={selectedChanged}
                 value={selected}>
-                <option value="" disabled />
+                <option value='' disabled />
                 {groupMembers.map(member => {
                   return (
                     <option key={member.email} value={member.email}>
@@ -59,12 +59,14 @@ const shopContent = ({
         </div>
       </div>
       {wishlist.email ? (
-        <div className="row">
-          <div className="col-sm">
-            <div className="row">
-              {wishlist.items.map(item => {
+        <div className='row'>
+          <div className='col-sm'>
+            <div className='row'>
+              {wishlist.items.map((item, idx) => {
                 return (
-                  <div key={item.id} className="col-xl-4 col-lg-6 col-md-12">
+                  <div
+                    key={item.name + idx}
+                    className='col-xl-4 col-lg-6 col-md-12'>
                     <ItemCard
                       listOwner={wishlist.email}
                       item={item}
@@ -76,7 +78,7 @@ const shopContent = ({
                 );
               })}
               {wishlist.items.length === 0 && (
-                <div className="col-sm">
+                <div className='col-sm'>
                   <p>Nothing has been added to this wishlist yet!</p>
                 </div>
               )}
@@ -84,8 +86,8 @@ const shopContent = ({
           </div>
         </div>
       ) : (
-        <div className="row">
-          <div className="col-sm">
+        <div className='row'>
+          <div className='col-sm'>
             {groupMembers.length > 0 ? (
               <p>Select a user to see their list.</p>
             ) : (
@@ -105,7 +107,7 @@ shopContent.propTypes = {
   groupMembers: PropTypes.array.isRequired,
   wishlist: PropTypes.object.isRequired,
   onClaimChanged: PropTypes.func.isRequired,
-  onViewClaim: PropTypes.func.isRequired
+  onViewClaim: PropTypes.func.isRequired,
 };
 
 export default shopContent;
