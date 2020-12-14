@@ -7,7 +7,8 @@ export function* getNotifications(action) {
   try {
     const notifications = yield call(
       Api.getNotifications,
-      action.payload.userEmail
+      action.payload.userEmail,
+      action.payload.showUnseen
     );
     yield put(
       notificationActions.getNotificationsCompleted(notifications)

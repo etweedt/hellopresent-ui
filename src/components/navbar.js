@@ -67,6 +67,17 @@ export class navbarContainer extends React.Component {
     const {auth, authInfo, notifications} = this.props;
     const {navbarIsOpen} = this.state;
 
+    function notificationsCount() {
+      let count = 0;
+      notifications.forEach(n => {
+        if (!n.seen) {
+          count++;
+        }
+      });
+
+      return count;
+    }
+
     return (
       <Navbar color="dark" dark expand="md" fixed="top">
         <NavbarBrand tag={Link} to="/" onClick={this.navbarClose}>
@@ -107,8 +118,8 @@ export class navbarContainer extends React.Component {
                   to="/notifications"
                   onClick={this.navbarClose}>
                   Notifications{' '}
-                  {notifications.length > 0 && (
-                    <Badge color="danger">{notifications.length}</Badge>
+                  {notificationsCount() > 0 && (
+                    <Badge color="danger">{notificationsCount()}</Badge>
                   )}
                 </NavLink>
               </NavItem>

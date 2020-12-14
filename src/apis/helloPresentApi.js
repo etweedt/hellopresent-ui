@@ -240,13 +240,15 @@ class HelloPresentApi {
     });
   }
 
-  static getNotifications(userEmail) {
+  static getNotifications(userEmail, showUnseen) {
+    const unseenOnly = showUnseen ? false : true;
+
     return new Promise((resolve, reject) => {
       axios
         .get(
           `${
             config.helloPresentApiEndpoint
-          }/notifications/${userEmail}?unseenOnly=true`
+          }/notifications/${userEmail}?unseenOnly=${unseenOnly}`
         )
         .then(response => {
           resolve(response.data.notifications);

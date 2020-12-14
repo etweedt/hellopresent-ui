@@ -1,10 +1,11 @@
 import * as types from '../constants/actionTypes';
 
-export function getNotifications(userEmail) {
+export function getNotifications(userEmail, showUnseen) {
   return {
     type: types.GET_NOTIFICATIONS_STARTED,
     payload: {
-      userEmail
+      userEmail,
+      showUnseen
     }
   };
 }

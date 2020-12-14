@@ -12,19 +12,32 @@ export class notificationsContainer extends React.Component {
     markNotificationAsRead: PropTypes.func.isRequired
   };
 
+  state = {
+    showUnseen: false,
+    activeTab: 1,
+    filter: ''
+  };
+
   componentWillMount() {
     const {auth, getNotifications} = this.props;
+    const {showUnseen} = this.state;
 
     if (auth.email) {
-      getNotifications(auth.email);
+      getNotifications(auth.email, showUnseen);
     }
+  }
+
+  componentWillUnmount() {
+    const {auth, getNotifications} = this.props;
+    getNotifications(auth.email, false);
   }
 
   componentWillReceiveProps(nextProps) {
     const {auth, getNotifications} = this.props;
+    const {showUnseen} = this.state;
 
     if (auth.email !== nextProps.auth.email && nextProps.auth.email) {
-      getNotifications(nextProps.auth.email);
+      getNotifications(nextProps.auth.email, showUnseen);
     }
   }
 
@@ -34,11 +47,35 @@ export class notificationsContainer extends React.Component {
     markNotificationAsRead(notification.id);
   };
 
+  onToggleTab = (showUnseen, activeTab) => {
+    const {auth, getNotifications} = this.props;
+    getNotifications(auth.email, showUnseen);
+
+    this.setState({
+      showUnseen,
+      activeTab
+    });
+  };
+
+  onFilterChanged = event => {
+    this.setState({
+      filter: event.target.value
+    })
+  }
+
   render() {
     const {notifications} = this.props;
+    const {activeTab, filter} = this.state;
 
     return (
-      <Content notifications={notifications} onMarkSeen={this.onMarkSeen} />
+      <Content
+        notifications={notifications}
+        onMarkSeen={this.onMarkSeen}
+        onToggleTab={this.onToggleTab}
+        activeTab={activeTab}
+        filter={filter}
+        onFilterChanged={this.onFilterChanged}
+      />
     );
   }
 }
@@ -52,8 +89,8 @@ export const mapStateToProps = state => {
 
 export const mapDispatchToProps = dispatch => {
   return {
-    getNotifications: userId => {
-      dispatch(notificationActions.getNotifications(userId));
+    getNotifications: (userId, showUnseen) => {
+      dispatch(notificationActions.getNotifications(userId, showUnseen));
     },
     markNotificationAsRead: notificationId => {
       dispatch(notificationActions.markNotificationAsRead(notificationId));
