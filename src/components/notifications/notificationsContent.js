@@ -1,45 +1,64 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {Alert} from 'reactstrap';
+import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
+import UnseenContent from './notificationsUnseenContent';
+import SeenContent from './notificationsSeenContent';
 
-const notificationsContent = ({notifications, onMarkSeen}) => {
+const notificationsContent = ({
+  notifications,
+  onMarkSeen,
+  onToggleTab,
+  activeTab,
+  filter,
+  onFilterChanged
+}) => {
   return (
-    <Fragment>
-      <div className="row mb-4">
-        <div className="col-sm">
+    <>
+      <div className='row mb-4'>
+        <div className='col-sm'>
           <h1>
-            <i className="fa fa-bell" /> Notifications
+            <i className='fa fa-bell' /> Notifications
           </h1>
         </div>
       </div>
-      {notifications.map(notification => {
-        return (
-          <div key={notification.id} className="row">
-            <div className="col-sm">
-              <Alert color="info" toggle={() => onMarkSeen(notification)}>
-                <div className="d-flex justify-content-between align-items-center">
-                  <span>{notification.message}</span>
-                  <span>{new Date(notification.date).toLocaleString()}</span>
-                </div>
-              </Alert>
-            </div>
-          </div>
-        );
-      })}
-      {notifications.length === 0 && (
-        <div className="row">
-          <div className="col-sm">
-            <p>You have no new notifications!</p>
-          </div>
-        </div>
-      )}
-    </Fragment>
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={activeTab === 1 ? 'clickable active' : 'clickable'}
+            onClick={() => onToggleTab(false, 1)}>
+            New
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={activeTab === 2 ? 'clickable active' : 'clickable'}
+            onClick={() => onToggleTab(true, 2)}>
+            All
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId={1}>
+          <UnseenContent
+            notifications={notifications}
+            onMarkSeen={onMarkSeen}
+          />
+        </TabPane>
+        <TabPane tabId={2}>
+          <SeenContent notifications={notifications} filter={filter} onFilterChanged={onFilterChanged} />
+        </TabPane>
+      </TabContent>
+    </>
   );
 };
 
 notificationsContent.propTypes = {
   notifications: PropTypes.array.isRequired,
-  onMarkSeen: PropTypes.func.isRequired
+  onMarkSeen: PropTypes.func.isRequired,
+  onToggleTab: PropTypes.func.isRequired,
+  activeTab: PropTypes.number.isRequired,
+  filter: PropTypes.string.isRequired,
+  onFilterChanged: PropTypes.func.isRequired
 };
 
 export default notificationsContent;
