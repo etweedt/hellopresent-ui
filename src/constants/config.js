@@ -9,4 +9,8 @@ export default {
   helloPresentApiEndpoint:
     process.env.REACT_APP_HELLO_PRESENT_API_ENDPOINT ||
     'http://168.61.150.190:60001'
+<<<<<<< Updated upstream
+=======
+  // helloPresentApiEndpoint: 'http://localhost:5000'
+>>>>>>> Stashed changes
 };
