@@ -8,6 +8,6 @@ export default {
   oAuthDomain: process.env.REACT_APP_O_AUTH_DOMAIN || 'hellopresent.auth0.com',
   helloPresentApiEndpoint:
     process.env.REACT_APP_HELLO_PRESENT_API_ENDPOINT ||
-    'http://168.61.150.190:60001'
+    'http://40.122.70.113:60001'
   // helloPresentApiEndpoint: 'http://localhost:5000'
 };
